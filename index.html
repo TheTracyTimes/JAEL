@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camp JAEL 2026 — Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ─── TOKENS ──────────────────────────────────────────────────── */
+    :root {
+      --navy:     #0F1F38;
+      --navy-lt:  #1A3158;
+      --gold:     #C9922A;
+      --gold-lt:  #E8B55A;
+      --gold-pale:#FBF0D8;
+      --red:      #B93232;
+      --red-lt:   #D45555;
+      --cream:    #FAF8F3;
+      --cream-dk: #EDE8DE;
+      --white:    #FFFFFF;
+      --ink:      #1A1A2E;
+      --ink-mid:  #4A4A6A;
+      --ink-soft: #8A8AAA;
+      --sky:      #3A7FC4;
+      --sky-pale: #D8EAF6;
+      --forest:   #2A5C48;
+      --forest-lt:#3D7A62;
+      --shadow-sm: 0 2px 8px rgba(15,31,56,0.08);
+      --shadow-md: 0 6px 24px rgba(15,31,56,0.12);
+      --shadow-lg: 0 16px 48px rgba(15,31,56,0.16);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-xl: 32px;
+      --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── RESET ───────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO BANNER ─────────────────────────────────────────────── */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-lt) 60%, #1E3A6B 100%);
+      position: relative; overflow: hidden;
+      padding: 52px 24px 48px;
+      text-align: center;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(201,146,42,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(58,127,196,0.1) 0%, transparent 60%);
+    }
+    .hero-banner::after {
+      content: '';
+      position: absolute; bottom: -1px; left: 0; right: 0; height: 40px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .hero-logo {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 0 8px rgba(201,146,42,0.15), 0 8px 32px rgba(0,0,0,0.3);
+      font-size: 2rem;
+    }
+    .hero-sup {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold-lt);
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.08; margin-bottom: 6px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-lt); }
+    .hero-sub {
+      font-size: 0.875rem; color: rgba(255,255,255,0.65);
+      letter-spacing: 0.05em; margin-bottom: 20px;
+    }
+    .hero-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    }
+    .hero-pill {
+      padding: 5px 14px; border-radius: 100px;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.8);
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── LAYOUT ──────────────────────────────────────────────────── */
+    .page-body {
+      max-width: 1320px; margin: 0 auto;
+      padding: 40px 24px 60px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 0 32px;
+    }
+
+    /* ─── PROGRESS ────────────────────────────────────────────────── */
+    .progress-wrap { margin-bottom: 32px; }
+    .progress-steps {
+      display: flex; align-items: center; gap: 0;
+    }
+    .ps-dot {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 600;
+      border: 2px solid var(--cream-dk); background: var(--cream);
+      color: var(--ink-soft); transition: var(--transition); z-index: 1;
+    }
+    .ps-dot.active { background: var(--navy); border-color: var(--navy); color: var(--gold-lt); box-shadow: 0 0 0 5px rgba(15,31,56,0.12); }
+    .ps-dot.done   { background: var(--gold); border-color: var(--gold); color: var(--white); font-size: 0.8rem; }
+    .ps-line {
+      flex: 1; height: 2px; background: var(--cream-dk); margin: 0 -1px;
+      transition: background 0.4s ease;
+    }
+    .ps-line.filled { background: var(--gold); }
+    .ps-labels {
+      display: flex; margin-top: 6px;
+    }
+    .ps-lbl-wrap { flex: 0 0 34px; text-align: center; position: relative; }
+    .ps-lbl-wrap:not(:last-child) { flex: 1; }
+    .ps-lbl {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-soft);
+      white-space: nowrap;
+    }
+    .ps-lbl.active { color: var(--navy); }
+    .ps-spacer { flex: 1; }
+
+    /* ─── FORM CARD ───────────────────────────────────────────────── */
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(15,31,56,0.06);
+      position: relative; overflow: hidden;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--gold), var(--red));
+    }
+    .form-section { display: none; animation: slideIn 0.38s ease forwards; }
+    .form-section.active { display: block; }
+    @keyframes slideIn { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
+
+    .step-eyebrow {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem; font-weight: 700; line-height: 1.15;
+      color: var(--navy); margin-bottom: 6px;
+    }
+    .step-desc {
+      font-size: 0.845rem; color: var(--ink-soft); line-height: 1.6;
+      margin-bottom: 36px; max-width: 500px;
+    }
+
+    /* ─── FIELDS ──────────────────────────────────────────────────── */
+    .fgrid   { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; margin-bottom: 18px; }
+    .fgrid1  { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 18px; }
+    .fgrid3  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px 22px; margin-bottom: 18px; }
+    .ffull   { grid-column: 1 / -1; }
+    .fg { display: flex; flex-direction: column; gap: 5px; }
+
+    .fl {
+      font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--ink-mid);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .fl .req { color: var(--red); font-size: 0.9em; }
+    .dtag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; padding: 2px 6px;
+      background: var(--sky-pale); color: var(--sky);
+      border-radius: 3px; font-weight: 500;
+      cursor: help; position: relative;
+    }
+    .dtag:hover::after {
+      content: attr(data-tip);
+      position: absolute; top: calc(100% + 6px); left: 0;
+      background: var(--navy); color: var(--white);
+      font-size: 0.68rem; font-family: 'DM Sans', sans-serif;
+      padding: 7px 10px; border-radius: 6px; width: 200px;
+      white-space: normal; z-index: 200; font-weight: 400; letter-spacing: 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .fi, .fs, .fta {
+      width: 100%; padding: 12px 15px;
+      border: 1.5px solid var(--cream-dk);
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; color: var(--ink);
+      background: var(--cream);
+      outline: none; -webkit-appearance: none;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .fi:focus, .fs:focus, .fta:focus {
+      border-color: var(--navy);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(15,31,56,0.08);
+    }
+    .fi.error, .fs.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(185,50,50,0.1); }
+    .err-msg { font-size: 0.7rem; color: var(--red); margin-top: 2px; display: none; }
+    .err-msg.show { display: block; }
+    .fs {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A8AAA' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 13px center;
+      padding-right: 38px; cursor: pointer;
+    }
+    .fta { resize: vertical; min-height: 84px; }
+
+    /* Radio pills */
+    .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
+    .rpill { position: relative; }
+    .rpill input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .rpill-lbl {
+      display: block; padding: 8px 16px; border-radius: 100px;
+      border: 1.5px solid var(--cream-dk);
+      font-size: 0.79rem; font-weight: 500; color: var(--ink-mid);
+      cursor: pointer; transition: var(--transition); background: var(--cream);
+      user-select: none;
+    }
+    .rpill-lbl:hover { border-color: var(--navy); color: var(--navy); }
+    .rpill input:checked + .rpill-lbl { background: var(--navy); border-color: var(--navy); color: var(--gold-pale); }
+
+    /* Activity checkboxes */
+    .act-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-top: 4px; }
+    .act-item { position: relative; }
+    .act-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .act-lbl {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      padding: 13px 8px;
+      border: 1.5px solid var(--cream-dk); border-radius: var(--radius-sm);
+      cursor: pointer; text-align: center; transition: var(--transition);
+      background: var(--cream); user-select: none;
+    }
+    .act-lbl:hover { border-color: var(--navy-lt); background: rgba(15,31,56,0.04); }
+    .act-item input:checked + .act-lbl {
+      border-color: var(--navy); background: rgba(15,31,56,0.07);
+      box-shadow: 0 0 0 3px rgba(15,31,56,0.1);
+    }
+    .act-icon { font-size: 1.35rem; line-height: 1; }
+    .act-txt { font-size: 0.68rem; font-weight: 600; color: var(--ink-mid); letter-spacing: 0.01em; }
+    .act-item input:checked + .act-lbl .act-txt { color: var(--navy); }
+
+    /* Under-18 conditional */
+    .cond-block {
+      background: rgba(201,146,42,0.07);
+      border: 1px solid rgba(201,146,42,0.2);
+      border-radius: var(--radius-md);
+      padding: 20px; margin: 14px 0;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
+    .cond-block.hidden-soft { opacity: 0; pointer-events: none; max-height: 0; padding: 0; overflow: hidden; margin: 0; border: none; }
+
+    /* Payment section */
+    .payment-opts {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+    }
+    .pay-item { position: relative; }
+    .pay-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .pay-lbl {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 16px 12px;
+      border: 1.5px solid var(--cream-dk); border-radius: var(--radius-sm);
+      cursor: pointer; text-align: center; transition: var(--transition);
+      background: var(--cream); user-select: none;
+    }
+    .pay-lbl:hover { border-color: var(--gold); background: var(--gold-pale); }
+    .pay-item input:checked + .pay-lbl {
+      border-color: var(--gold); background: var(--gold-pale);
+      box-shadow: 0 0 0 3px rgba(201,146,42,0.15);
+    }
+    .pay-logo { font-size: 1.5rem; line-height: 1; }
+    .pay-name { font-size: 0.78rem; font-weight: 700; color: var(--ink-mid); }
+    .pay-item input:checked + .pay-lbl .pay-name { color: var(--gold); }
+
+    /* Section divider */
+    .sdiv {
+      border: none; border-top: 1px solid rgba(15,31,56,0.07);
+      margin: 28px 0;
+    }
+
+    /* Info note */
+    .info-note {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--sky-pale); border: 1px solid rgba(58,127,196,0.2);
+      border-radius: var(--radius-sm); padding: 14px 16px;
+      font-size: 0.775rem; color: var(--ink-mid); line-height: 1.5;
+      margin-top: 14px;
+    }
+    .info-note .ni { font-size: 1rem; flex-shrink: 0; }
+    .info-note strong { color: var(--sky); }
+
+    /* NAV */
+    .form-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 40px; padding-top: 26px;
+      border-top: 1px solid rgba(15,31,56,0.07);
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.855rem; font-weight: 600;
+      cursor: pointer; border: none; transition: var(--transition); letter-spacing: 0.02em;
+    }
+    .btn-primary { background: var(--navy); color: var(--gold-pale); box-shadow: 0 4px 16px rgba(15,31,56,0.28); }
+    .btn-primary:hover { background: var(--navy-lt); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(15,31,56,0.35); }
+    .btn-ghost { background: transparent; color: var(--ink-soft); border: 1.5px solid var(--cream-dk); }
+    .btn-ghost:hover { border-color: var(--ink-soft); color: var(--ink); }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-lt)); color: var(--white); box-shadow: 0 4px 20px rgba(201,146,42,0.4); }
+    .btn-gold:hover { box-shadow: 0 6px 28px rgba(201,146,42,0.5); transform: translateY(-1px); }
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ─── ANALYTICS SIDEBAR ───────────────────────────────────────── */
+    .sidebar {
+      display: flex; flex-direction: column; gap: 18px;
+      position: sticky; top: 24px;
+      height: fit-content; max-height: calc(100vh - 48px);
+      overflow-y: auto; padding-bottom: 8px;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--cream-dk); border-radius: 4px; }
+
+    .acard {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 22px; box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(15,31,56,0.06);
+      animation: fadeUp 0.4s ease forwards;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    .acard-eyebrow {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;
+    }
+    .chip {
+      padding: 2px 7px; border-radius: 3px;
+      font-size: 0.57rem; font-weight: 700; letter-spacing: 0.06em;
+    }
+    .chip-live    { background: rgba(42,92,72,0.1); color: var(--forest); }
+    .chip-donut   { background: rgba(58,127,196,0.1); color: var(--sky); }
+    .chip-bar     { background: rgba(15,31,56,0.08); color: var(--navy); }
+    .chip-insight { background: rgba(201,146,42,0.12); color: var(--gold); }
+
+    .acard-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 3px;
+    }
+    .acard-desc {
+      font-size: 0.7rem; color: var(--ink-soft); line-height: 1.5; margin-bottom: 14px;
+    }
+
+    /* Counter */
+    .counter-row { display: flex; align-items: center; gap: 14px; }
+    .counter-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem; font-weight: 700; color: var(--navy); line-height: 1;
+      transition: transform 0.2s ease;
+    }
+    .counter-num.bump { animation: numBump 0.3s ease; }
+    @keyframes numBump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+    .counter-meta { font-size: 0.72rem; color: var(--ink-soft); line-height: 1.5; }
+    .counter-meta strong { display: block; font-size: 0.82rem; color: var(--ink); }
+    .enroll-bar-track { height: 5px; background: var(--cream-dk); border-radius: 3px; overflow: hidden; margin-top: 10px; }
+    .enroll-bar-fill { height: 100%; background: linear-gradient(90deg, var(--navy), var(--gold)); border-radius: 3px; transition: width 1s ease; }
+
+    /* Ring */
+    .ring-row { display: flex; align-items: center; gap: 14px; }
+    .ring-wrap { position: relative; width: 76px; height: 76px; flex-shrink: 0; }
+    .ring-wrap svg { transform: rotate(-90deg); }
+    .ring-bg   { fill: none; stroke: var(--cream-dk); stroke-width: 5.5; }
+    .ring-fill { fill: none; stroke: var(--gold); stroke-width: 5.5; stroke-linecap: round; stroke-dasharray: 214; stroke-dashoffset: 214; transition: stroke-dashoffset 0.55s cubic-bezier(0.4,0,0.2,1); }
+    .ring-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    .ring-pct { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--navy); }
+    .ring-info { font-size: 0.7rem; color: var(--ink-soft); line-height: 1.45; }
+    .ring-info strong { display: block; font-size: 0.78rem; color: var(--ink); }
+
+    /* Chart wraps */
+    .cwrap { position: relative; height: 156px; }
+    .cwrap-sm { position: relative; height: 130px; }
+
+    /* Insight box */
+    .ibox {
+      background: linear-gradient(135deg, rgba(15,31,56,0.04), rgba(201,146,42,0.04));
+      border: 1px solid rgba(15,31,56,0.08);
+      border-radius: var(--radius-sm); padding: 12px 14px;
+      font-size: 0.75rem; color: var(--ink-mid); line-height: 1.5;
+    }
+    .ibox .ii { font-size: 0.9rem; display: block; margin-bottom: 3px; }
+    .ibox strong { color: var(--navy); }
+    .ibox + .ibox { margin-top: 8px; }
+
+    /* ─── SUMMARY ─────────────────────────────────────────────────── */
+    .sum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .sum-stat { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid rgba(15,31,56,0.06); }
+    .sum-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+    .sum-key { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
+    .sum-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .sum-tag { padding: 4px 12px; border-radius: 100px; background: rgba(15,31,56,0.08); color: var(--navy); font-size: 0.7rem; font-weight: 600; }
+    .cwrap-sum { height: 170px; margin: 16px 0; }
+
+    /* ─── SUCCESS ─────────────────────────────────────────────────── */
+    .success-view { display: none; text-align: center; padding: 16px 0; }
+    .success-view.show { display: block; animation: fadeUp 0.5s ease forwards; }
+    .suc-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-lt));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 22px; font-size: 2rem;
+      box-shadow: 0 8px 32px rgba(15,31,56,0.25);
+    }
+    .suc-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--navy); margin-bottom: 10px; }
+    .suc-sub { color: var(--ink-soft); font-size: 0.875rem; line-height: 1.65; max-width: 400px; margin: 0 auto 28px; }
+    .suc-assembly {
+      display: inline-block; padding: 10px 22px;
+      background: var(--gold-pale); border-radius: var(--radius-md);
+      font-size: 0.8rem; color: var(--gold); font-weight: 600;
+      border: 1px solid rgba(201,146,42,0.2); margin-bottom: 28px;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .page-body { grid-template-columns: 1fr; }
+      .sidebar { grid-column: 1; position: static; max-height: none; display: grid; grid-template-columns: 1fr 1fr; }
+      .form-card { padding: 30px 24px; }
+    }
+    @media (max-width: 640px) {
+      .sidebar { grid-template-columns: 1fr; }
+      .fgrid  { grid-template-columns: 1fr; }
+      .fgrid3 { grid-template-columns: 1fr 1fr; }
+      .act-grid { grid-template-columns: repeat(2,1fr); }
+      .payment-opts { grid-template-columns: 1fr; }
+      .sum-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero-banner">
+  <div class="hero-inner">
+    <div class="hero-logo">🏕️</div>
+    <p class="hero-sup">Assemblée Évangélique de Laval</p>
+    <h1 class="hero-title">Camp JAEL <em>2026</em></h1>
+    <p class="hero-sub">9th Edition</p>
+    <div class="hero-pills">
+      <span class="hero-pill">📅 July 12–17, 2026</span>
+      <span class="hero-pill">📍 Beaupré, Québec, Canada</span>
+      <span class="hero-pill">👥 Ages 14–39</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ BODY ══════════ -->
+<div class="page-body">
+
+  <!-- ─── FORM COLUMN ─── -->
+  <main>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-steps" id="progressSteps">
+        <div class="ps-dot active" id="dot-0">1</div>
+        <div class="ps-line" id="line-0"></div>
+        <div class="ps-dot" id="dot-1">2</div>
+        <div class="ps-line" id="line-1"></div>
+        <div class="ps-dot" id="dot-2">3</div>
+        <div class="ps-line" id="line-2"></div>
+        <div class="ps-dot" id="dot-3">4</div>
+        <div class="ps-line" id="line-3"></div>
+        <div class="ps-dot" id="dot-4">5</div>
+      </div>
+      <div class="ps-labels">
+        <div class="ps-lbl-wrap"><span class="ps-lbl active" id="lbl-0">Profile</span><span class="ps-spacer"></span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-1">Church</span><span class="ps-spacer"></span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-2">Camp Life</span><span class="ps-spacer"></span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-3">Safety</span><span class="ps-spacer"></span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-4">Review</span></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+
+      <!-- ══ STEP 1: Personal Profile ══ -->
+      <section class="form-section active" id="step-0">
+        <p class="step-eyebrow">Step 1 of 5</p>
+        <h2 class="step-title">Personal Information</h2>
+        <p class="step-desc">Your basic details help us personalize your experience and power the live analytics dashboard on the right.</p>
+
+        <div class="fgrid">
+          <div class="fg">
+            <label class="fl" for="s1-fn">First Name <span class="req">*</span></label>
+            <input class="fi" type="text" id="s1-fn" placeholder="e.g. Jordan" oninput="fc()" />
+            <span class="err-msg" id="err-fn">Please enter your first name.</span>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s1-ln">Last Name <span class="req">*</span></label>
+            <input class="fi" type="text" id="s1-ln" placeholder="e.g. Beaumont" oninput="fc()" />
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="s1-gender">
+              Gender <span class="req">*</span>
+              <span class="dtag" data-tip="Binary categorical data — useful for demographic breakdowns">CAT</span>
+            </label>
+            <select class="fs" id="s1-gender" onchange="fc()">
+              <option value="">Select…</option>
+              <option>Female</option>
+              <option>Male</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s1-age">
+              Age <span class="req">*</span>
+              <span class="dtag" data-tip="Discrete numeric data — drives the age distribution bar chart">NUM</span>
+            </label>
+            <input class="fi" type="number" id="s1-age" min="14" max="39" placeholder="14 – 39" oninput="onAgeChange()" />
+          </div>
+
+          <!-- Conditional: under 18 chaperone -->
+          <div class="fg ffull" id="chapBlock" style="display:none;">
+            <div class="cond-block">
+              <div class="fl" style="margin-bottom:8px;">
+                🛡️ &nbsp;<strong style="color:var(--gold);">Under 18 — Chaperone Required</strong>
+                <span class="dtag" data-tip="Conditional field — only shown when age < 18. Good UX practice: never show irrelevant fields.">COND</span>
+              </div>
+              <div class="fgrid" style="margin-bottom:0;">
+                <div class="fg">
+                  <label class="fl" for="s1-chap-name">Chaperone Full Name <span class="req">*</span></label>
+                  <input class="fi" type="text" id="s1-chap-name" placeholder="Parent or guardian name" oninput="fc()" />
+                </div>
+                <div class="fg">
+                  <label class="fl" for="s1-chap-phone">Chaperone Phone <span class="req">*</span></label>
+                  <input class="fi" type="tel" id="s1-chap-phone" placeholder="(555) 000-0000" oninput="fc()" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="s1-phone">Phone Number <span class="req">*</span></label>
+            <input class="fi" type="tel" id="s1-phone" placeholder="(555) 000-0000" oninput="fc()" />
+          </div>
+          <div class="fg">
+            <label class="fl" for="s1-email">Email Address <span class="req">*</span></label>
+            <input class="fi" type="email" id="s1-email" placeholder="you@email.com" oninput="fc()" />
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="s1-nationality">
+              Nationality
+              <span class="dtag" data-tip="Nominal categorical — no natural order, useful for demographic charts">NOM</span>
+            </label>
+            <select class="fs" id="s1-nationality" onchange="fc()">
+              <option value="">Select…</option>
+              <option>French</option>
+              <option>Canadian</option>
+              <option>American</option>
+              <option>Haitian</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s1-tshirt">
+              T-Shirt Size
+              <span class="dtag" data-tip="Ordinal data — has a meaningful order (XS → 2XL). Important for camp merchandise planning.">ORD</span>
+            </label>
+            <select class="fs" id="s1-tshirt" onchange="fc()">
+              <option value="">Select size…</option>
+              <option>Youth XS</option>
+              <option>Youth S</option>
+              <option>Youth M</option>
+              <option>Youth L</option>
+              <option>Adult S</option>
+              <option>Adult M</option>
+              <option>Adult L</option>
+              <option>Adult XL</option>
+              <option>Adult 2XL</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="fgrid1">
+          <div class="fg">
+            <label class="fl">
+              Transportation
+              <span class="dtag" data-tip="Helps camp logistics plan van/bus capacity — operational data">LOG</span>
+            </label>
+            <div class="pills" id="transport-pills">
+              <label class="rpill"><input type="radio" name="transport" value="Self / Carpool" onchange="fc()" /><span class="rpill-lbl">Self / Carpool</span></label>
+              <label class="rpill"><input type="radio" name="transport" value="Church Van" onchange="fc()" /><span class="rpill-lbl">Church Van</span></label>
+              <label class="rpill"><input type="radio" name="transport" value="Camp Bus" onchange="fc()" /><span class="rpill-lbl">Camp Bus</span></label>
+              <label class="rpill"><input type="radio" name="transport" value="Need Assistance" onchange="fc()" /><span class="rpill-lbl">Need Assistance</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <div></div>
+          <button class="btn btn-primary" onclick="goTo(1)">
+            Next: Church Info
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 2: Church / Assembly ══ -->
+      <section class="form-section" id="step-1">
+        <p class="step-eyebrow">Step 2 of 5</p>
+        <h2 class="step-title">Your Assembly</h2>
+        <p class="step-desc">Knowing which church you attend helps us coordinate with your pastor and track which assemblies are most represented at camp.</p>
+
+        <div class="fgrid1">
+          <div class="fg">
+            <label class="fl" for="s2-assembly">
+              Home Assembly <span class="req">*</span>
+              <span class="dtag" data-tip="Nominal categorical with many values — ideal for a frequency table or bar chart">NOM</span>
+            </label>
+            <select class="fs" id="s2-assembly" onchange="onAssemblyChange()">
+              <option value="">Select your assembly…</option>
+              <!-- Max 15 participants per congregation -->
+              <optgroup label="🇨🇦 Canada">
+                <option>Assemblée Évangélique de Laval (Pastor Exavier Noel &amp; Pastor Rosage Beauzil)</option>
+                <option>Assemblée Évangélique de Montreal (Pastor David Paul)</option>
+                <option>Tabernacle Evangelique Mahanaim (Pastor Gesner Dorzin)</option>
+                <option>Gospel Assembly of the Kingdom of Peace (Pastor Ancelot Joseph)</option>
+              </optgroup>
+              <optgroup label="🇫🇷 France">
+                <option>Assemblée Évangélique (Pastor Jean Bazelais)</option>
+                <option>Eglise de la Nouvelle Alliance (Pastor Vitalerme Dorestant)</option>
+                <option>Eglise du Corps de Christ (Pastor Wilner Dumond)</option>
+              </optgroup>
+              <optgroup label="🇺🇸 United States">
+                <option>Sarasota Gospel Temple (Pastor Edwige Achile)</option>
+                <option>Christian Family Gospel Assembly (Pastor Kennedy Demosthenes)</option>
+                <option>Ansonia Gospel Assembly (Pastor Jowel Guerrier)</option>
+                <option>Gospel Assembly Church (Pastor Noisin Raphael)</option>
+                <option>Boston Gospel Congregation (Pastor Guy Mauristhene)</option>
+                <option>First Church of the Latter Rain (Pastor Wilson Douce)</option>
+                <option>God of Mercy Church (Pastor Hogarth Louis)</option>
+                <option>First Church of Brooklyn (Pastor Jean Michaud Derissant)</option>
+                <option>Christian Church of the Latter Rain (Pastor Jean Raymond Pharaud)</option>
+                <option>Gospel Church of Hope (Pastor Augustin Dalusma)</option>
+              </optgroup>
+              <option value="Other">Other (specify below)</option>
+            </select>
+          </div>
+
+          <!-- Congregation spot counter — shown when assembly is selected -->
+          <div id="congregationCounter" style="display:none; margin-top:-8px;">
+            <div style="
+              background: linear-gradient(135deg, rgba(15,31,56,0.05), rgba(201,146,42,0.08));
+              border: 1px solid rgba(201,146,42,0.3);
+              border-radius: var(--radius-sm);
+              padding: 12px 16px;
+              display: flex; align-items: center; gap: 12px;
+            ">
+              <div style="font-size:1.5rem; line-height:1;">⛪</div>
+              <div style="flex:1;">
+                <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-mid); margin-bottom:2px;">Congregation Limit</div>
+                <div id="spotCounterText" style="font-size:0.85rem; color:var(--ink); line-height:1.4;"></div>
+              </div>
+              <div style="text-align:center; flex-shrink:0;">
+                <div id="spotsRemaining" style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700; color:var(--navy); line-height:1;">15</div>
+                <div style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft);">spots left</div>
+              </div>
+            </div>
+            <div style="
+              height:6px; background:var(--cream-dk); border-radius:3px; overflow:hidden; margin-top:6px;
+            ">
+              <div id="spotBar" style="height:100%; background:linear-gradient(90deg,var(--navy),var(--gold)); border-radius:3px; width:0%; transition:width 0.6s ease;"></div>
+            </div>
+            <div style="font-size:0.65rem; color:var(--ink-soft); margin-top:4px; font-family:'DM Mono',monospace;" id="spotBarLabel">0 / 15 spots taken from this assembly</div>
+          </div>
+
+          <div class="fg" id="otherAssemblyField" style="display:none;">
+            <label class="fl" for="s2-other-assembly">Assembly Name</label>
+            <input class="fi" type="text" id="s2-other-assembly" placeholder="Enter your assembly name…" oninput="fc()" />
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="s2-pastor">Your Pastor's Name</label>
+            <input class="fi" type="text" id="s2-pastor" placeholder="Auto-filled or enter manually" oninput="fc()" />
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="s2-years-church">Years at this Assembly</label>
+            <select class="fs" id="s2-years-church" onchange="fc()">
+              <option value="">Select…</option>
+              <option>Less than 1 year</option>
+              <option>1–2 years</option>
+              <option>3–5 years</option>
+              <option>6–10 years</option>
+              <option>10+ years</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="sdiv" />
+
+        <div class="fgrid1">
+          <div class="fg">
+            <label class="fl" for="s2-years-camp">
+              Previous Camp JAEL Attendance
+              <span class="dtag" data-tip="Ordinal — tracks retention rate, a key metric for event organizers">ORD</span>
+            </label>
+            <div class="pills">
+              <label class="rpill"><input type="radio" name="prev-camp" value="First Time" onchange="fc()" /><span class="rpill-lbl">First time!</span></label>
+              <label class="rpill"><input type="radio" name="prev-camp" value="1 year" onchange="fc()" /><span class="rpill-lbl">1 year</span></label>
+              <label class="rpill"><input type="radio" name="prev-camp" value="2 years" onchange="fc()" /><span class="rpill-lbl">2 years</span></label>
+              <label class="rpill"><input type="radio" name="prev-camp" value="3-4 years" onchange="fc()" /><span class="rpill-lbl">3–4 years</span></label>
+              <label class="rpill"><input type="radio" name="prev-camp" value="5+ years" onchange="fc()" /><span class="rpill-lbl">5+ years</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(0)">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <button class="btn btn-primary" onclick="goTo(2)">
+            Next: Camp Life
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 3: Camp Life ══ -->
+      <section class="form-section" id="step-2">
+        <p class="step-eyebrow">Step 3 of 5</p>
+        <h2 class="step-title">Camp Life & Preferences</h2>
+        <p class="step-desc">Select your interests — watch the donut chart update live as you choose! These choices help us plan sessions and staffing.</p>
+
+        <div class="fgrid1">
+          <div class="fg">
+            <label class="fl">
+              Activities You're Excited About
+              <span class="dtag" data-tip="Multi-select categorical — each selection adds a data point to the donut chart in real time">DONUT</span>
+            </label>
+            <div class="act-grid" id="activities-grid">
+              <div class="act-item"><input type="checkbox" id="ac-morning-prayer" value="Morning Prayer" onchange="onActivityChange()" /><label class="act-lbl" for="ac-morning-prayer"><span class="act-icon">🙏</span><span class="act-txt">Morning Prayer</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-breakfast" value="Breakfast" onchange="onActivityChange()" /><label class="act-lbl" for="ac-breakfast"><span class="act-icon">🍳</span><span class="act-txt">Breakfast</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-bible" value="Bible Study" onchange="onActivityChange()" /><label class="act-lbl" for="ac-bible"><span class="act-icon">📖</span><span class="act-txt">Bible Study</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-lunch" value="Lunch" onchange="onActivityChange()" /><label class="act-lbl" for="ac-lunch"><span class="act-icon">🥗</span><span class="act-txt">Lunch</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-dinner" value="Dinner" onchange="onActivityChange()" /><label class="act-lbl" for="ac-dinner"><span class="act-icon">🍽️</span><span class="act-txt">Dinner</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-service" value="Service" onchange="onActivityChange()" /><label class="act-lbl" for="ac-service"><span class="act-icon">⛪</span><span class="act-txt">Service</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-supper" value="Supper" onchange="onActivityChange()" /><label class="act-lbl" for="ac-supper"><span class="act-icon">🌙</span><span class="act-txt">Supper</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-outing" value="Outing" onchange="onActivityChange()" /><label class="act-lbl" for="ac-outing"><span class="act-icon">🌿</span><span class="act-txt">Outing</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-break" value="Break" onchange="onActivityChange()" /><label class="act-lbl" for="ac-break"><span class="act-icon">☕</span><span class="act-txt">Break</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-activities" value="Activities" onchange="onActivityChange()" /><label class="act-lbl" for="ac-activities"><span class="act-icon">🎉</span><span class="act-txt">Activities</span></label></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fgrid">
+          <div class="fg">
+            <label class="fl" for="s3-cabin">Cabin Preference</label>
+            <select class="fs" id="s3-cabin" onchange="fc()">
+              <option value="">No preference</option>
+              <option>Cedar — Quiet &amp; reflective</option>
+              <option>Maple — Social &amp; lively</option>
+              <option>Pine — Nature-focused</option>
+              <option>Oak — Leadership cabin</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s3-roommate">Roommate Request</label>
+            <input class="fi" type="text" id="s3-roommate" placeholder="Name of someone to room with" oninput="fc()" />
+          </div>
+        </div>
+
+        <div class="fgrid1">
+          <div class="fg">
+            <label class="fl" for="s3-goal">What do you hope to take away from camp?</label>
+            <textarea class="fta" id="s3-goal" placeholder="Share in your own words — your spiritual goals, what you're looking forward to…" oninput="fc()"></textarea>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s3-questions">Questions about camp</label>
+            <textarea class="fta" id="s3-questions" placeholder="Any questions about the schedule, activities, or logistics?" oninput="fc()"></textarea>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s3-concerns">Concerns or special requests</label>
+            <textarea class="fta" id="s3-concerns" placeholder="Anything you'd like the camp team to know…" oninput="fc()"></textarea>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s3-comments">Additional comments</label>
+            <textarea class="fta" id="s3-comments" placeholder="Anything else on your mind?" oninput="fc()"></textarea>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(1)">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <button class="btn btn-primary" onclick="goTo(3)">
+            Next: Safety & Payment
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 4: Safety & Payment ══ -->
+      <section class="form-section" id="step-3">
+        <p class="step-eyebrow">Step 4 of 5</p>
+        <h2 class="step-title">Safety &amp; Payment</h2>
+        <p class="step-desc">Your safety information is stored securely and only used in emergencies. Payment confirms your spot at camp.</p>
+
+        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase;">Emergency Contact</p>
+        <div class="fgrid">
+          <div class="fg">
+            <label class="fl" for="s4-ec-name">Contact Full Name <span class="req">*</span></label>
+            <input class="fi" type="text" id="s4-ec-name" placeholder="e.g. Marie Joseph" oninput="fc()" />
+          </div>
+          <div class="fg">
+            <label class="fl" for="s4-ec-rel">Relationship <span class="req">*</span></label>
+            <select class="fs" id="s4-ec-rel" onchange="fc()">
+              <option value="">Select…</option>
+              <option>Parent</option>
+              <option>Guardian</option>
+              <option>Grandparent</option>
+              <option>Aunt / Uncle</option>
+              <option>Sibling</option>
+              <option>Spouse</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl" for="s4-ec-phone">Emergency Phone <span class="req">*</span></label>
+            <input class="fi" type="tel" id="s4-ec-phone" placeholder="(555) 000-0000" oninput="fc()" />
+          </div>
+          <div class="fg">
+            <label class="fl" for="s4-ec-email">Emergency Email</label>
+            <input class="fi" type="email" id="s4-ec-email" placeholder="contact@email.com" oninput="fc()" />
+          </div>
+        </div>
+
+        <div class="fgrid1" style="margin-top:4px;">
+          <div class="fg">
+            <label class="fl" for="s4-allergies">
+              Allergies &amp; Medical Conditions
+              <span class="dtag" data-tip="Unstructured text — critical for safety, not used for trend analysis">SAFE</span>
+            </label>
+            <textarea class="fta" id="s4-allergies" placeholder="Food allergies, medications, asthma, diabetes, or any conditions staff should be aware of…" oninput="fc()"></textarea>
+          </div>
+        </div>
+
+        <div class="info-note">
+          <span class="ni">🔒</span>
+          <p><strong>Data Ethics Note:</strong> In data analytics, we must distinguish between data collected for <em>analysis</em> vs. data collected for <em>operational safety</em>. This section is strictly operational — it will never appear in trend reports or dashboards. Responsible data collection means knowing <em>why</em> you need each data point.</p>
+        </div>
+
+        <hr class="sdiv" />
+
+        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase;">Contribution Amount</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;">
+          <div style="background:var(--cream);border:1.5px solid rgba(42,92,72,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
+            <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;">🇨🇦 Canada</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1;">$520</div>
+            <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:2px;">CAD</div>
+          </div>
+          <div style="background:var(--cream);border:1.5px solid rgba(42,92,72,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
+            <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;">🇺🇸 USA</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1;">$395</div>
+            <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:2px;">USD</div>
+          </div>
+          <div style="background:var(--cream);border:1.5px solid rgba(42,92,72,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
+            <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;">🇫🇷 France</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1;">€325</div>
+            <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:2px;">EUR</div>
+          </div>
+        </div>
+        <div class="info-note" style="margin-bottom:18px;">
+          <span class="ni">ℹ️</span>
+          <p>Contribution covers <strong>accommodations &amp; transportation</strong>. Select your payment method below. Spaces are limited — <strong>15 participants per congregation</strong>, first-come, first-served.</p>
+        </div>
+
+        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase;">Payment Option</p>
+        <div class="payment-opts">
+          <div class="pay-item">
+            <input type="radio" name="payment" id="pay-cash" value="CashApp" onchange="onPaymentChange('CashApp')" />
+            <label class="pay-lbl" for="pay-cash">
+              <span class="pay-logo">💸</span>
+              <span class="pay-name">CashApp</span>
+              <span style="font-size:0.65rem;color:var(--ink-soft);">$JAELCAMP</span>
+            </label>
+          </div>
+          <div class="pay-item">
+            <input type="radio" name="payment" id="pay-zelle" value="Zelle" onchange="onPaymentChange('Zelle')" />
+            <label class="pay-lbl" for="pay-zelle">
+              <span class="pay-logo">⚡</span>
+              <span class="pay-name">Zelle</span>
+              <span style="font-size:0.65rem;color:var(--ink-soft);">camp@jael.org</span>
+            </label>
+          </div>
+          <div class="pay-item">
+            <input type="radio" name="payment" id="pay-check" value="Check" onchange="onPaymentChange('Check')" />
+            <label class="pay-lbl" for="pay-check">
+              <span class="pay-logo">📄</span>
+              <span class="pay-name">Check</span>
+              <span style="font-size:0.65rem;color:var(--ink-soft);">Payable to Camp JAEL</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="payment-details" class="info-note" style="display:none; margin-top:14px;">
+          <span class="ni">💳</span>
+          <p id="payment-detail-text"></p>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(2)">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <button class="btn btn-primary" onclick="goTo(4)">
+            Review My Registration
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ══ STEP 5: Summary Dashboard ══ -->
+      <section class="form-section" id="step-4">
+        <p class="step-eyebrow">Step 5 of 5 · Your Data Dashboard</p>
+        <h2 class="step-title">Review your registration</h2>
+        <p class="step-desc">This is what a data analyst sees after collecting responses — your answers turned into a personal data snapshot. Verify everything looks correct before submitting.</p>
+
+        <div class="sum-grid" id="summaryStats"></div>
+        <div id="summaryActivities"></div>
+        <div class="cwrap-sum"><canvas id="summaryChart"></canvas></div>
+        <div id="summaryAssembly" style="margin-top:14px;"></div>
+
+        <div class="info-note" style="margin-top:18px;">
+          <span class="ni">📊</span>
+          <p><strong>UI/UX Design Pattern:</strong> This "review" step is called a <strong>confirmation screen</strong>. It reduces form abandonment by giving users a chance to catch errors. It also teaches data visualization — turning raw form inputs into a readable summary is a core analytics skill.</p>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" onclick="goTo(3)">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Edit
+          </button>
+          <button class="btn btn-gold" onclick="submitForm()">
+            Submit Registration 🙌
+          </button>
+        </div>
+      </section>
+
+      <!-- ══ SUCCESS ══ -->
+      <div class="success-view" id="successView">
+        <div class="suc-icon">🏕️</div>
+        <h2 class="suc-title">You're registered!</h2>
+        <p class="suc-sub">Welcome to Camp JAEL 2026 — 9th Edition (July 12–17, Beaupré, QC). A confirmation has been sent to your email. We're so excited to see you this summer — come ready to grow, worship, and make memories that last.</p>
+        <div id="sucAssembly" class="suc-assembly"></div>
+        <br/>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:16px;">
+          <button class="btn btn-primary" onclick="resetForm()">Register Another Camper</button>
+          <button class="btn btn-gold" onclick="exportCSV()">⬇ Download Camp Report (CSV)</button>
+        </div>
+      </div>
+
+    </div><!-- /form-card -->
+  </main>
+
+  <!-- ─── ANALYTICS SIDEBAR ─── -->
+  <aside class="sidebar">
+
+    <!-- Venue & Cost Card -->
+    <div class="acard" style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%);color:white;border:none;">
+      <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:6px;">📍 Venue &amp; Costs</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:white;margin-bottom:2px;">Manoir Mont-Sainte-Anne</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.65);margin-bottom:14px;">1 Rue des Érables, Beaupré, Québec · July 12–17, 2026</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;">🇨🇦 Canada</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);">$520</div>
+          <div style="font-size:0.58rem;color:rgba(255,255,255,0.4);">CAD</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;">🇺🇸 USA</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);">$395</div>
+          <div style="font-size:0.58rem;color:rgba(255,255,255,0.4);">USD</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;">🇫🇷 France</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);">€325</div>
+          <div style="font-size:0.58rem;color:rgba(255,255,255,0.4);">EUR</div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem;color:rgba(255,255,255,0.55);line-height:1.5;">
+        Covers accommodations, lodging, and transportation.
+      </div>
+    </div>
+
+    <!-- Live Counter -->
+    <div class="acard">
+      <div class="acard-eyebrow"><span class="chip chip-live">LIVE</span> Enrollment</div>
+      <div class="acard-title">Campers Registered</div>
+      <div class="acard-desc">Simulated live count — production would query your database in real time to show enrollment momentum.</div>
+      <div class="counter-row">
+        <div class="counter-num" id="liveCounter">47</div>
+        <div class="counter-meta"><strong>out of 120 spots</strong>73 spots remaining</div>
+      </div>
+      <div class="enroll-bar-track">
+        <div class="enroll-bar-fill" id="enrollBar" style="width:39%;"></div>
+      </div>
+      <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:5px;font-family:'DM Mono',monospace;">39% capacity · Filling fast</div>
+      <div class="ibox" style="margin-top:12px;">
+        <span class="ii">💡</span>
+        <strong>KPI Counter:</strong> A Key Performance Indicator — the simplest form of data visualization. One number that tells the story.
+      </div>
+    </div>
+
+    <!-- Completion Ring -->
+    <div class="acard">
+      <div class="acard-eyebrow"><span class="chip chip-bar">PROGRESS</span> Your Form</div>
+      <div class="acard-title">Completion rate</div>
+      <div class="acard-desc">Completion rate = fields filled ÷ total fields. A core UX metric that shows how far you've come.</div>
+      <div class="ring-row">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 76 76" width="76" height="76">
+            <circle class="ring-bg" cx="38" cy="38" r="34"/>
+            <circle class="ring-fill" id="ringFill" cx="38" cy="38" r="34"/>
+          </svg>
+          <div class="ring-center"><span class="ring-pct" id="ringPct">0%</span></div>
+        </div>
+        <div class="ring-info">
+          <strong id="ringLabel">Just starting</strong>
+          Each field you fill moves this ring. This teaches <em>data completeness</em> — how analysts measure data quality.
+        </div>
+      </div>
+    </div>
+
+    <!-- Donut Chart -->
+    <div class="acard">
+      <div class="acard-eyebrow"><span class="chip chip-donut">DONUT CHART</span> Activities</div>
+      <div class="acard-title">Activity interest split</div>
+      <div class="acard-desc">Based on demo data + your selections. Select activities on Step 3 to see this chart shift live.</div>
+      <div class="cwrap"><canvas id="activityChart"></canvas></div>
+      <div class="ibox" style="margin-top:12px;">
+        <span class="ii">📐</span>
+        <strong>When to use a donut:</strong> Best for 5–8 categories showing part-to-whole. Avoid when all slices are similar sizes.
+      </div>
+    </div>
+
+    <!-- Bar Chart: Age -->
+    <div class="acard">
+      <div class="acard-eyebrow"><span class="chip chip-bar">BAR CHART</span> Age Groups</div>
+      <div class="acard-title">Campers by age group</div>
+      <div class="acard-desc">Your age group is highlighted in gold when you fill in Step 1. Enter your age to see where you land.</div>
+      <div class="cwrap-sm"><canvas id="ageChart"></canvas></div>
+      <div class="ibox" style="margin-top:12px;">
+        <span class="ii">📏</span>
+        <strong>Design rule:</strong> Highlight the user's own data point. It creates a personal connection and teaches <em>contextual comparison</em>.
+      </div>
+    </div>
+
+    <!-- Church Chart -->
+    <div class="acard">
+      <div class="acard-eyebrow"><span class="chip chip-insight">BAR CHART</span> Assemblies</div>
+      <div class="acard-title">Churches attending</div>
+      <div class="acard-desc">Simulated breakdown by assembly. Select yours on Step 2 to see your church highlighted.</div>
+      <div class="cwrap-sm"><canvas id="churchChart"></canvas></div>
+      <div class="ibox" style="margin-top:12px;">
+        <span class="ii">⛪</span>
+        <strong>Cost analysis use:</strong> This chart helps planners allocate resources, negotiate group rates, and coordinate transportation by church cluster.
+      </div>
+    </div>
+
+    <!-- Insights -->
+    <div class="acard">
+      <div class="acard-eyebrow"><span class="chip chip-insight">INSIGHTS</span> Data Story</div>
+      <div class="acard-title">What the data says</div>
+      <div class="acard-desc">Data analysts transform numbers into narratives. Here's this camp's story so far:</div>
+      <div class="ibox">
+        <span class="ii">🏕️</span>
+        <strong>47 campers</strong> registered across <strong>12 assemblies</strong>. The largest group comes from <strong>Laval &amp; Montreal</strong>.
+      </div>
+      <div class="ibox" id="dynamicInsight">
+        <span class="ii">✨</span>
+        Select your activities in Step 3 to generate a personalized insight.
+      </div>
+      <div class="ibox" style="margin-top:8px;">
+        <span class="ii">💰</span>
+        <strong>Cost planning:</strong> With 47 campers × $X registration fee, you can model revenue projections and break-even analysis — real applied analytics!
+      </div>
+    </div>
+
+    <!-- Data Export -->
+    <div class="acard" style="border: 1.5px solid rgba(201,146,42,0.3); background: linear-gradient(135deg, var(--gold-pale), var(--cream));">
+      <div class="acard-eyebrow"><span class="chip chip-live">EXPORT</span> Camp Director</div>
+      <div class="acard-title">Download Report</div>
+      <div class="acard-desc">Export all stored registration data as JSON or CSV for analysis in Excel, Google Sheets, or any BI tool.</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+        <button class="btn btn-primary" onclick="exportJSON()" style="width:100%;justify-content:center;font-size:0.8rem;padding:10px;">
+          ⬇ Export as JSON
+        </button>
+        <button class="btn btn-ghost" onclick="exportCSV()" style="width:100%;justify-content:center;font-size:0.8rem;padding:10px;">
+          ⬇ Export as CSV (Excel)
+        </button>
+      </div>
+      <div class="ibox" style="margin-top:10px;">
+        <span class="ii">📋</span>
+        <strong>Data Analytics tip:</strong> JSON is best for nested/relational data. CSV is best for spreadsheet tools like Excel. Both are industry-standard formats.
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ════════════════════════════════════════════
+     BACKEND DATA COLLECTION & ANALYTICS ENGINE
+     (In production: replace localStorage with a real API call)
+     ════════════════════════════════════════════ -->
+<script>
+// ─────────────────────────────────────────────────────────────────
+//  ANALYTICS DATA STORE
+//  In production, sessionData is POSTed to your server/database.
+//  All fields below are intentionally comprehensive for future
+//  reporting, cost analysis, and trend visualization.
+// ─────────────────────────────────────────────────────────────────
+const sessionData = {
+  meta: {
+    formVersion: '2026.1',
+    timestamp: null,
+    sessionId: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substr(2,9),
+    userAgent: navigator.userAgent,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    completionDurationMs: null,
+  },
+  personal: {},
+  chaperone: {},
+  church: {},
+  campLife: {},
+  safety: {},
+  payment: {},
+  analytics: {
+    // Derived fields for reporting
+    ageGroup: null,
+    isMinor: null,
+    activityCount: 0,
+    formCompletionPct: 0,
+    stepTimestamps: [],
+  }
+};
+const formStartTime = Date.now();
+
+function collectAllData() {
+  const get  = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  const getR = name => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ''; };
+  const getChecked = selector => Array.from(document.querySelectorAll(selector + ':checked')).map(e => e.value);
+
+  const age = parseInt(get('s1-age')) || null;
+  sessionData.meta.timestamp = new Date().toISOString();
+  sessionData.meta.completionDurationMs = Date.now() - formStartTime;
+
+  sessionData.personal = {
+    firstName:   get('s1-fn'),
+    lastName:    get('s1-ln'),
+    fullName:    [get('s1-fn'), get('s1-ln')].filter(Boolean).join(' '),
+    gender:      get('s1-gender'),
+    age:         age,
+    phone:       get('s1-phone'),
+    email:       get('s1-email'),
+    nationality: get('s1-nationality'),
+    tshirtSize:  get('s1-tshirt'),
+    transportation: getR('transport'),
+  };
+
+  sessionData.chaperone = {
+    required: age !== null && age < 18,
+    name:     get('s1-chap-name'),
+    phone:    get('s1-chap-phone'),
+  };
+
+  const assemblyVal = get('s2-assembly');
+  sessionData.church = {
+    assembly:     assemblyVal === 'Other' ? get('s2-other-assembly') : assemblyVal,
+    assemblyRaw:  assemblyVal,
+    pastor:       get('s2-pastor'),
+    yearsAtChurch: get('s2-years-church'),
+    previousCampAttendance: getR('prev-camp'),
+    isReturningCamper: getR('prev-camp') !== 'First Time' && getR('prev-camp') !== '',
+  };
+
+  const activities = getChecked('#activities-grid input');
+  sessionData.campLife = {
+    activities:      activities,
+    activityCount:   activities.length,
+    cabinPreference: get('s3-cabin'),
+    roommateRequest: get('s3-roommate'),
+    campGoal:        get('s3-goal'),
+    questions:       get('s3-questions'),
+    concerns:        get('s3-concerns'),
+    comments:        get('s3-comments'),
+  };
+
+  sessionData.safety = {
+    emergencyContactName:     get('s4-ec-name'),
+    emergencyContactRelation: get('s4-ec-rel'),
+    emergencyContactPhone:    get('s4-ec-phone'),
+    emergencyContactEmail:    get('s4-ec-email'),
+    allergiesAndMedical:      get('s4-allergies'),
+  };
+
+  sessionData.payment = {
+    method: getR('payment'),
+  };
+
+  // Derived analytics fields
+  if (age !== null) {
+    sessionData.analytics.isMinor = age < 18;
+    if (age <= 15)      sessionData.analytics.ageGroup = '13–15';
+    else if (age <= 19) sessionData.analytics.ageGroup = '16–19';
+    else if (age <= 24) sessionData.analytics.ageGroup = '20–24';
+    else if (age <= 29) sessionData.analytics.ageGroup = '25–29';
+    else if (age <= 34) sessionData.analytics.ageGroup = '30–34';
+    else                sessionData.analytics.ageGroup = '35–39';
+  }
+  sessionData.analytics.activityCount = activities.length;
+  sessionData.analytics.formCompletionPct = calcCompletion();
+
+  // Store locally (replace with real API call in production)
+  try {
+    const existing = JSON.parse(localStorage.getItem('jaelCampRegistrations') || '[]');
+    existing.push(sessionData);
+    localStorage.setItem('jaelCampRegistrations', JSON.stringify(existing));
+    console.log('[JAEL Camp] Registration saved to localStorage. Analytics payload:', sessionData);
+  } catch(e) {
+    console.warn('[JAEL Camp] localStorage unavailable, data logged to console only.');
+    console.log('[JAEL Camp] Full registration payload:', JSON.stringify(sessionData, null, 2));
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  CHART SETUP
+// ─────────────────────────────────────────────────────────────────
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.color = '#8A8AAA';
+
+let activityChart, ageChart, churchChart, summaryChart;
+
+const ACTIVITY_COLORS = {
+  'Morning Prayer': '#3A7FC4', 'Breakfast': '#C9922A', 'Bible Study': '#7A5C8A',
+  'Lunch': '#2A5C48', 'Dinner': '#0F1F38', 'Service': '#B93232',
+  'Supper': '#4A4A6A', 'Outing': '#3D7A62', 'Break': '#7AAFC8', 'Activities': '#C9922A'
+};
+
+const BASE_ACTIVITY_DATA = {
+  'Morning Prayer': 38, 'Breakfast': 42, 'Bible Study': 35,
+  'Lunch': 42, 'Dinner': 40, 'Service': 30,
+  'Supper': 38, 'Outing': 28, 'Break': 32, 'Activities': 25
+};
+
+const PASTOR_MAP = {
+  'Assemblée Évangélique de Laval (Pastor Exavier Noel & Pastor Rosage Beauzil)': 'Pastor Exavier Noel & Pastor Rosage Beauzil',
+  'Assemblée Évangélique de Montreal (Pastor David Paul)': 'Pastor David Paul',
+  'Tabernacle Evangelique Mahanaim (Pastor Gesner Dorzin)': 'Pastor Gesner Dorzin',
+  'Gospel Assembly of the Kingdom of Peace (Pastor Ancelot Joseph)': 'Pastor Ancelot Joseph',
+  'Assemblée Évangélique (Pastor Jean Bazelais)': 'Pastor Jean Bazelais',
+  'Eglise de la Nouvelle Alliance (Pastor Vitalerme Dorestant)': 'Pastor Vitalerme Dorestant',
+  'Eglise du Corps de Christ (Pastor Wilner Dumond)': 'Pastor Wilner Dumond',
+  'Sarasota Gospel Temple (Pastor Edwige Achile)': 'Pastor Edwige Achile',
+  'Christian Family Gospel Assembly (Pastor Kennedy Demosthenes)': 'Pastor Kennedy Demosthenes',
+  'Ansonia Gospel Assembly (Pastor Jowel Guerrier)': 'Pastor Jowel Guerrier',
+  'Gospel Assembly Church (Pastor Noisin Raphael)': 'Pastor Noisin Raphael',
+  'Boston Gospel Congregation (Pastor Guy Mauristhene)': 'Pastor Guy Mauristhene',
+  'First Church of the Latter Rain (Pastor Wilson Douce)': 'Pastor Wilson Douce',
+  'God of Mercy Church (Pastor Hogarth Louis)': 'Pastor Hogarth Louis',
+  'First Church of Brooklyn (Pastor Jean Michaud Derissant)': 'Pastor Jean Michaud Derissant',
+  'Christian Church of the Latter Rain (Pastor Jean Raymond Pharaud)': 'Pastor Jean Raymond Pharaud',
+  'Gospel Church of Hope (Pastor Augustin Dalusma)': 'Pastor Augustin Dalusma',
+};
+
+const BASE_CHURCH_DATA = {
+  'Laval':    14, 'Montreal':  9, 'Mahanaim':  6,
+  'Brooklyn': 5, 'Boston':    4, 'Sarasota':  3,
+  'Other':    6,
+};
+
+function initCharts() {
+  // Activity donut
+  const aCtx = document.getElementById('activityChart').getContext('2d');
+  activityChart = new Chart(aCtx, {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(BASE_ACTIVITY_DATA),
+      datasets: [{ data: Object.values(BASE_ACTIVITY_DATA),
+        backgroundColor: Object.keys(BASE_ACTIVITY_DATA).map(k => ACTIVITY_COLORS[k]),
+        borderWidth: 2, borderColor: '#fff', hoverOffset: 6 }]
+    },
+    options: {
+      cutout: '62%', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.label}: ${c.raw}` } } },
+      animation: { duration: 500 }
+    }
+  });
+
+  // Age bar — range 13–39 split into groups
+  const ageCtx = document.getElementById('ageChart').getContext('2d');
+  const ageLabels = ['13–15', '16–19', '20–24', '25–29', '30–34', '35–39'];
+  const ageVals   = [8, 13, 10, 8, 5, 3];
+  ageChart = new Chart(ageCtx, {
+    type: 'bar',
+    data: {
+      labels: ageLabels,
+      datasets: [{ label: 'Campers', data: ageVals,
+        backgroundColor: ageLabels.map((_,i) => i === 1 ? 'rgba(15,31,56,0.85)' : 'rgba(15,31,56,0.25)'),
+        borderRadius: 5, borderSkipped: false }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+        y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { stepSize: 4, font: { size: 10 } }, beginAtZero: true }
+      }
+    }
+  });
+
+  // Church bar
+  const cCtx = document.getElementById('churchChart').getContext('2d');
+  churchChart = new Chart(cCtx, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(BASE_CHURCH_DATA),
+      datasets: [{ label: 'Campers', data: Object.values(BASE_CHURCH_DATA),
+        backgroundColor: 'rgba(201,146,42,0.35)', borderRadius: 5, borderSkipped: false }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 } }, beginAtZero: true },
+        y: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  FORM LOGIC
+// ─────────────────────────────────────────────────────────────────
+let currentStep = 0;
+const TOTAL = 5;
+
+const TRACKED_FIELDS = [
+  's1-fn','s1-ln','s1-gender','s1-age','s1-phone','s1-email','s1-nationality','s1-tshirt',
+  's2-assembly','s2-years-church',
+  's3-goal',
+  's4-ec-name','s4-ec-rel','s4-ec-phone',
+];
+
+function calcCompletion() {
+  let filled = TRACKED_FIELDS.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.value.trim() !== '';
+  }).length;
+  const anyActivity = document.querySelectorAll('#activities-grid input:checked').length > 0;
+  if (anyActivity) filled++;
+  const anyTransport = document.querySelector('input[name="transport"]:checked');
+  if (anyTransport) filled++;
+  const total = TRACKED_FIELDS.length + 2;
+  return Math.round((filled / total) * 100);
+}
+
+function fc() {
+  updateRing();
+}
+
+function updateRing() {
+  const pct = calcCompletion();
+  const circ = 214;
+  const offset = circ - (circ * pct / 100);
+  document.getElementById('ringFill').style.strokeDashoffset = offset;
+  document.getElementById('ringPct').textContent = pct + '%';
+  const lbls = [[0,'Just starting'],[20,'Making progress!'],[40,'Halfway there…'],[60,'Looking great!'],[80,'Almost done!'],[95,'Ready to submit!']];
+  let lbl = 'Just starting';
+  for (const [t,l] of lbls) if (pct >= t) lbl = l;
+  document.getElementById('ringLabel').textContent = lbl;
+}
+
+function onAgeChange() {
+  const age = parseInt(document.getElementById('s1-age').value);
+  const chapBlock = document.getElementById('chapBlock');
+  if (!isNaN(age) && age < 18) {
+    chapBlock.style.display = '';
+  } else {
+    chapBlock.style.display = 'none';
+  }
+
+  // Highlight age group in bar chart
+  const ageLabels = ['13–15', '16–19', '20–24', '25–29', '30–34', '35–39'];
+  const ageRanges = [[13,15],[16,19],[20,24],[25,29],[30,34],[35,39]];
+  let hi = -1;
+  if (!isNaN(age)) {
+    ageRanges.forEach(([lo,up], i) => { if (age >= lo && age <= up) hi = i; });
+  }
+  ageChart.data.datasets[0].backgroundColor = ageLabels.map((_,i) =>
+    i === hi ? 'rgba(201,146,42,0.9)' : 'rgba(15,31,56,0.25)'
+  );
+  ageChart.update();
+  fc();
+}
+
+function onActivityChange() {
+  const checked = Array.from(document.querySelectorAll('#activities-grid input:checked'));
+  const merged = {...BASE_ACTIVITY_DATA};
+  checked.forEach(cb => { merged[cb.value] = (merged[cb.value] || 0) + 1; });
+  const labels = Object.keys(merged);
+  activityChart.data.labels = labels;
+  activityChart.data.datasets[0].data = labels.map(k => merged[k]);
+  activityChart.data.datasets[0].backgroundColor = labels.map(k => ACTIVITY_COLORS[k] || '#999');
+  activityChart.update();
+
+  // Dynamic insight
+  const box = document.getElementById('dynamicInsight');
+  if (checked.length === 0) {
+    box.innerHTML = '<span class="ii">✨</span> Select your activities in Step 3 to generate a personalized insight.';
+  } else {
+    const top = checked[0].value;
+    const pct = Math.round((BASE_ACTIVITY_DATA[top] / 47) * 100);
+    box.innerHTML = `<span class="ii">🎯</span> <strong>${pct}% of registered campers</strong> also love <strong>${top}</strong>. You're in great company!`;
+  }
+  fc();
+}
+
+function onAssemblyChange() {
+  const val = document.getElementById('s2-assembly').value;
+  const otherField = document.getElementById('otherAssemblyField');
+  const pastorField = document.getElementById('s2-pastor');
+
+  otherField.style.display = val === 'Other' ? '' : 'none';
+
+  // Auto-fill pastor
+  if (PASTOR_MAP[val]) {
+    pastorField.value = PASTOR_MAP[val];
+  } else if (val !== 'Other') {
+    pastorField.value = '';
+  }
+
+  // Highlight church bar
+  const shortName = val.includes('Laval') ? 'Laval'
+    : val.includes('Montreal') ? 'Montreal'
+    : val.includes('Mahanaim') ? 'Mahanaim'
+    : val.includes('Brooklyn') ? 'Brooklyn'
+    : val.includes('Boston') ? 'Boston'
+    : val.includes('Sarasota') ? 'Sarasota'
+    : null;
+  const churchLabels = Object.keys(BASE_CHURCH_DATA);
+  churchChart.data.datasets[0].backgroundColor = churchLabels.map(l =>
+    l === shortName ? 'rgba(201,146,42,0.9)' : 'rgba(201,146,42,0.3)'
+  );
+  churchChart.update();
+
+  // ── Congregation spot countdown ──────────────────────────────
+  const counter   = document.getElementById('congregationCounter');
+  const counterTxt = document.getElementById('spotCounterText');
+  const spotsEl   = document.getElementById('spotsRemaining');
+  const barEl     = document.getElementById('spotBar');
+  const barLbl    = document.getElementById('spotBarLabel');
+  const MAX_SPOTS = 15;
+
+  if (!val || val === 'Other') {
+    counter.style.display = 'none';
+  } else {
+    // Count registrations from localStorage for this assembly
+    let taken = 0;
+    try {
+      const regs = JSON.parse(localStorage.getItem('jaelCampRegistrations') || '[]');
+      taken = regs.filter(r => r.church && r.church.assemblyRaw === val).length;
+    } catch(e) { taken = 0; }
+
+    const remaining = Math.max(0, MAX_SPOTS - taken);
+    const pct = Math.round((taken / MAX_SPOTS) * 100);
+    const color = remaining <= 3 ? '#B93232' : remaining <= 7 ? '#C9922A' : '#2A5C48';
+
+    spotsEl.textContent = remaining;
+    spotsEl.style.color = color;
+    barEl.style.width = pct + '%';
+    barEl.style.background = remaining <= 3
+      ? 'linear-gradient(90deg,#B93232,#D45555)'
+      : remaining <= 7
+      ? 'linear-gradient(90deg,#C9922A,#E8B55A)'
+      : 'linear-gradient(90deg,var(--navy),var(--gold))';
+    barLbl.textContent = `${taken} / ${MAX_SPOTS} spots taken from this assembly`;
+    counterTxt.innerHTML = remaining === 0
+      ? `<strong style="color:#B93232;">This congregation is full.</strong> Contact your pastor about the waitlist.`
+      : `<strong>${remaining} spot${remaining !== 1 ? 's' : ''} available</strong> from your congregation. First-come, first-served — register early!`;
+    counter.style.display = '';
+  }
+
+  fc();
+}
+
+function onPaymentChange(method) {
+  const details = {
+    'CashApp': '<strong>CashApp:</strong> Send payment to <strong>$JAELCAMP2026</strong>. Include your full name in the memo.',
+    'Zelle':   '<strong>Zelle:</strong> Send payment to <strong>camp@jael.org</strong>. Include your full name in the memo.',
+    'Check':   '<strong>Check:</strong> Make payable to <strong>Camp JAEL 2026</strong>. Bring to your pastor or mail to the camp coordinator.',
+  };
+  const box = document.getElementById('payment-details');
+  const txt = document.getElementById('payment-detail-text');
+  box.style.display = '';
+  txt.innerHTML = details[method] || '';
+  fc();
+}
+
+function goTo(step) {
+  document.getElementById(`step-${currentStep}`).classList.remove('active');
+  for (let i = 0; i < TOTAL; i++) {
+    const dot  = document.getElementById(`dot-${i}`);
+    const line = document.getElementById(`line-${i}`);
+    const lbl  = document.getElementById(`lbl-${i}`);
+    dot.classList.remove('active','done');
+    if (lbl) lbl.classList.remove('active');
+    if (i < step)  { dot.classList.add('done'); dot.innerHTML = '✓'; if (line) line.classList.add('filled'); }
+    else if (i === step) { dot.classList.add('active'); dot.innerHTML = i+1; if (lbl) lbl.classList.add('active'); if (line) line.classList.remove('filled'); }
+    else           { dot.innerHTML = i+1; if (line) line.classList.remove('filled'); }
+  }
+  currentStep = step;
+  if (step === 4) buildSummary();
+  document.getElementById(`step-${step}`).classList.add('active');
+  document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  sessionData.analytics.stepTimestamps.push({ step, time: Date.now() - formStartTime });
+}
+
+function buildSummary() {
+  const get = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  const getR = name => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : '—'; };
+  const checked = Array.from(document.querySelectorAll('#activities-grid input:checked'));
+
+  const assemblyRaw = get('s2-assembly');
+  const assemblyShort = assemblyRaw.includes('Laval') ? 'Assemblée de Laval'
+    : assemblyRaw.includes('Montreal') ? 'Assemblée de Montreal'
+    : assemblyRaw === 'Other' ? get('s2-other-assembly') || 'Other'
+    : assemblyRaw.split('(')[0].trim() || '—';
+
+  document.getElementById('summaryStats').innerHTML = `
+    <div class="sum-stat"><div class="sum-val">${get('s1-fn') || '—'} ${get('s1-ln')}</div><div class="sum-key">Full Name</div></div>
+    <div class="sum-stat"><div class="sum-val">${get('s1-age') || '—'}</div><div class="sum-key">Age</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${get('s1-tshirt') || '—'}</div><div class="sum-key">T-Shirt Size</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('payment')}</div><div class="sum-key">Payment Method</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('transport')}</div><div class="sum-key">Transportation</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${get('s2-years-church') || '—'}</div><div class="sum-key">Years at Assembly</div></div>
+  `;
+
+  document.getElementById('summaryAssembly').innerHTML = assemblyShort ? `
+    <div class="info-note">
+      <span class="ni">⛪</span>
+      <p><strong>Assembly:</strong> ${assemblyShort}<br/>
+      <strong>Pastor:</strong> ${get('s2-pastor') || '—'}<br/>
+      <strong>Camp history:</strong> ${getR('prev-camp')}</p>
+    </div>` : '';
+
+  if (checked.length > 0) {
+    document.getElementById('summaryActivities').innerHTML = `
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">YOUR ACTIVITIES (${checked.length} selected)</div>
+      <div class="sum-tags">${checked.map(c => `<span class="sum-tag">${c.value}</span>`).join('')}</div>
+    `;
+    if (summaryChart) summaryChart.destroy();
+    const sCtx = document.getElementById('summaryChart').getContext('2d');
+    summaryChart = new Chart(sCtx, {
+      type: 'doughnut',
+      data: {
+        labels: checked.map(c => c.value),
+        datasets: [{
+          data: checked.map(() => 1),
+          backgroundColor: checked.map(c => ACTIVITY_COLORS[c.value] || '#999'),
+          borderWidth: 3, borderColor: '#fff'
+        }]
+      },
+      options: {
+        cutout: '50%', responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: true, position: 'right', labels: { font: { size: 10 }, boxWidth: 12, padding: 8 } } }
+      }
+    });
+  } else {
+    document.getElementById('summaryActivities').innerHTML = '<p style="font-size:0.8rem;color:var(--ink-soft);">No activities selected. Go back to choose some!</p>';
+  }
+}
+
+function submitForm() {
+  collectAllData();
+  bumpCounter();
+  document.getElementById('step-4').classList.remove('active');
+  document.querySelector('.progress-wrap').style.display = 'none';
+  const name = document.getElementById('s1-fn').value || 'Camper';
+  const assemblyRaw = document.getElementById('s2-assembly').value;
+  const assemblyShort = assemblyRaw.split('(')[0].trim() || 'Your Assembly';
+  document.getElementById('sucAssembly').textContent = '⛪ ' + assemblyShort;
+  document.getElementById('successView').classList.add('show');
+  console.log('[JAEL Camp] ✅ Form submitted. Full data payload logged and stored.');
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  DATA EXPORT FUNCTIONS (for camp directors & data analysis)
+// ─────────────────────────────────────────────────────────────────
+function getAllRegistrations() {
+  try {
+    return JSON.parse(localStorage.getItem('jaelCampRegistrations') || '[]');
+  } catch(e) { return []; }
+}
+
+function exportJSON() {
+  const data = getAllRegistrations();
+  if (data.length === 0) {
+    alert('No registrations stored yet. Complete a registration first, then export.');
+    return;
+  }
+  const report = {
+    exportedAt: new Date().toISOString(),
+    camp: 'Camp JAEL 2026',
+    dates: 'July 12–17, 2026',
+    totalRegistrations: data.length,
+    registrations: data,
+    summary: buildSummaryStats(data),
+  };
+  const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'JAEL_Camp_2026_Registrations.json';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+function exportCSV() {
+  const data = getAllRegistrations();
+  if (data.length === 0) {
+    alert('No registrations stored yet. Complete a registration first, then export.');
+    return;
+  }
+  const headers = [
+    'Timestamp','First Name','Last Name','Gender','Age','Age Group','Is Minor',
+    'Phone','Email','Nationality','T-Shirt Size','Transportation',
+    'Assembly','Pastor','Years at Church','Previous Camp Attendance','Is Returning',
+    'Activities','Cabin Preference','Roommate Request','Camp Goal','Questions','Concerns','Comments',
+    'Emergency Contact Name','Emergency Relation','Emergency Phone','Emergency Email',
+    'Allergies & Medical','Chaperone Name','Chaperone Phone',
+    'Payment Method','Form Completion %','Duration (ms)'
+  ];
+  const rows = data.map(r => [
+    r.meta?.timestamp || '',
+    r.personal?.firstName || '',
+    r.personal?.lastName || '',
+    r.personal?.gender || '',
+    r.personal?.age || '',
+    r.analytics?.ageGroup || '',
+    r.analytics?.isMinor ? 'Yes' : 'No',
+    r.personal?.phone || '',
+    r.personal?.email || '',
+    r.personal?.nationality || '',
+    r.personal?.tshirtSize || '',
+    r.personal?.transportation || '',
+    r.church?.assembly || '',
+    r.church?.pastor || '',
+    r.church?.yearsAtChurch || '',
+    r.church?.previousCampAttendance || '',
+    r.church?.isReturningCamper ? 'Yes' : 'No',
+    (r.campLife?.activities || []).join('; '),
+    r.campLife?.cabinPreference || '',
+    r.campLife?.roommateRequest || '',
+    r.campLife?.campGoal || '',
+    r.campLife?.questions || '',
+    r.campLife?.concerns || '',
+    r.campLife?.comments || '',
+    r.safety?.emergencyContactName || '',
+    r.safety?.emergencyContactRelation || '',
+    r.safety?.emergencyContactPhone || '',
+    r.safety?.emergencyContactEmail || '',
+    r.safety?.allergiesAndMedical || '',
+    r.chaperone?.name || '',
+    r.chaperone?.phone || '',
+    r.payment?.method || '',
+    r.analytics?.formCompletionPct || '',
+    r.meta?.completionDurationMs || '',
+  ].map(v => `"${String(v).replace(/"/g,'""')}"`));
+
+  const csv = [headers.map(h => `"${h}"`).join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'JAEL_Camp_2026_Registrations.csv';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+function buildSummaryStats(data) {
+  const count = v => data.filter(r => r.personal?.gender === v).length;
+  const groups = {};
+  data.forEach(r => { const g = r.analytics?.ageGroup || 'Unknown'; groups[g] = (groups[g]||0)+1; });
+  const assemblies = {};
+  data.forEach(r => { const a = (r.church?.assembly||'Unknown').split('(')[0].trim(); assemblies[a] = (assemblies[a]||0)+1; });
+  const shirts = {};
+  data.forEach(r => { const s = r.personal?.tshirtSize || 'Unknown'; shirts[s] = (shirts[s]||0)+1; });
+  return {
+    totalCampers: data.length,
+    genderBreakdown: { female: count('Female'), male: count('Male') },
+    ageGroups: groups,
+    assemblies,
+    tshirtSizes: shirts,
+    returningCampers: data.filter(r => r.church?.isReturningCamper).length,
+    minors: data.filter(r => r.analytics?.isMinor).length,
+    paymentMethods: data.reduce((acc, r) => { const m = r.payment?.method||'Unknown'; acc[m]=(acc[m]||0)+1; return acc; }, {}),
+    avgCompletionPct: Math.round(data.reduce((s,r) => s + (r.analytics?.formCompletionPct||0),0)/data.length),
+  };
+}
+
+function resetForm() {
+  document.getElementById('successView').classList.remove('show');
+  document.querySelector('.progress-wrap').style.display = '';
+  document.querySelectorAll('.fi,.fs,.fta').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="checkbox"],input[type="radio"]').forEach(el => el.checked = false);
+  document.getElementById('chapBlock').style.display = 'none';
+  document.getElementById('otherAssemblyField').style.display = 'none';
+  document.getElementById('payment-details').style.display = 'none';
+
+  // Reset charts
+  const labels = Object.keys(BASE_ACTIVITY_DATA);
+  activityChart.data.labels = labels;
+  activityChart.data.datasets[0].data = labels.map(k => BASE_ACTIVITY_DATA[k]);
+  activityChart.data.datasets[0].backgroundColor = labels.map(k => ACTIVITY_COLORS[k]);
+  activityChart.update();
+
+  const ageLabels = ['13–15','16–19','20–24','25–29','30–34','35–39'];
+  ageChart.data.datasets[0].backgroundColor = ageLabels.map((_,i) => i===1?'rgba(15,31,56,0.85)':'rgba(15,31,56,0.25)');
+  ageChart.update();
+
+  const churchLabels = Object.keys(BASE_CHURCH_DATA);
+  churchChart.data.datasets[0].backgroundColor = churchLabels.map(() => 'rgba(201,146,42,0.35)');
+  churchChart.update();
+
+  document.getElementById('dynamicInsight').innerHTML = '<span class="ii">✨</span> Select your activities in Step 3 to generate a personalized insight.';
+
+  // Reset progress dots
+  for (let i = 0; i < TOTAL; i++) {
+    const dot = document.getElementById(`dot-${i}`);
+    const line = document.getElementById(`line-${i}`);
+    const lbl  = document.getElementById(`lbl-${i}`);
+    dot.classList.remove('active','done');
+    dot.innerHTML = i+1;
+    if (line) line.classList.remove('filled');
+    if (lbl)  { lbl.classList.remove('active'); }
+  }
+  currentStep = 0;
+  document.getElementById('dot-0').classList.add('active');
+  document.getElementById('lbl-0').classList.add('active');
+  document.getElementById('step-0').classList.add('active');
+  updateRing();
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  LIVE COUNTER
+// ─────────────────────────────────────────────────────────────────
+let counterVal = 47;
+function bumpCounter() {
+  counterVal += Math.floor(Math.random() * 2) + 1;
+  if (counterVal > 120) counterVal = 120;
+  const el = document.getElementById('liveCounter');
+  el.textContent = counterVal;
+  el.classList.add('bump');
+  setTimeout(() => el.classList.remove('bump'), 350);
+  const pct = Math.round((counterVal / 120) * 100);
+  document.getElementById('enrollBar').style.width = pct + '%';
+}
+setInterval(() => { bumpCounter(); }, 5000 + Math.random() * 4000);
+
+// ─────────────────────────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  initCharts();
+  updateRing();
+});
+</script>
+</body>
+</html>
