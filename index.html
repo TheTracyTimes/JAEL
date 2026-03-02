@@ -10,28 +10,29 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <style>
-    /* ─── TOKENS ──────────────────────────────────────────────────── */
+    /*  TOKENS  */
     :root {
-      --navy:     #0F1F38;
-      --navy-lt:  #1A3158;
-      --gold:     #C9922A;
-      --gold-lt:  #E8B55A;
-      --gold-pale:#FBF0D8;
-      --red:      #B93232;
-      --red-lt:   #D45555;
-      --cream:    #FAF8F3;
-      --cream-dk: #EDE8DE;
+      --navy:     #0B041F;   /* dark purple  — primary dark */
+      --navy-lt:  #0C1A69;   /* dark blue    — secondary dark */
+      --gold:     #D0A455;   /* gold         — accent, use sparingly */
+      --gold-lt:  #DFBA78;   /* gold light */
+      --gold-pale:#F7F2E8;   /* gold pale    — subtle tint */
+      --red:      #8B1C1C;   /* error only   — not in main palette */
+      --red-lt:   #B02424;
+      --cream:    #FFFFFF;   /* white        — main background */
+      --cream-dk: #ECEDF4;   /* off-white    — subtle purple-tinted borders */
       --white:    #FFFFFF;
-      --ink:      #1A1A2E;
-      --ink-mid:  #4A4A6A;
-      --ink-soft: #8A8AAA;
-      --sky:      #3A7FC4;
-      --sky-pale: #D8EAF6;
-      --forest:   #2A5C48;
-      --forest-lt:#3D7A62;
-      --shadow-sm: 0 2px 8px rgba(15,31,56,0.08);
-      --shadow-md: 0 6px 24px rgba(15,31,56,0.12);
-      --shadow-lg: 0 16px 48px rgba(15,31,56,0.16);
+      --ink:      #0B041F;   /* dark purple  — body text */
+      --ink-mid:  #2A3460;   /* blue-purple  — secondary text */
+      --ink-soft: #A4A7A8;   /* light gray   — muted text, accent */
+      --sky:      #0836C4;   /* medium blue  — primary interactive */
+      --sky-lt:   #004AA9;   /* light blue   — hover / secondary interactive */
+      --sky-pale: #E5EAF8;   /* pale blue    — subtle backgrounds */
+      --forest:   #636B2F;   /* olive        — accent, use sparingly */
+      --forest-lt:#7A8338;   /* olive light */
+      --shadow-sm: 0 2px 8px rgba(11,4,31,0.08);
+      --shadow-md: 0 6px 24px rgba(11,4,31,0.12);
+      --shadow-lg: 0 16px 48px rgba(11,4,31,0.16);
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 22px;
@@ -39,7 +40,7 @@
       --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ─── RESET ───────────────────────────────────────────────────── */
+    /*  RESET  */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -50,9 +51,9 @@
       overflow-x: hidden;
     }
 
-    /* ─── HERO BANNER ─────────────────────────────────────────────── */
+    /*  HERO BANNER  */
     .hero-banner {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-lt) 60%, #1E3A6B 100%);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-lt) 60%, #0836C4 100%);
       position: relative; overflow: hidden;
       padding: 52px 24px 48px;
       text-align: center;
@@ -61,8 +62,8 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(201,146,42,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(58,127,196,0.1) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(208,164,85,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(8,54,196,0.12) 0%, transparent 60%);
     }
     .hero-banner::after {
       content: '';
@@ -76,7 +77,7 @@
       background: linear-gradient(135deg, var(--gold), var(--gold-lt));
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 20px;
-      box-shadow: 0 0 0 8px rgba(201,146,42,0.15), 0 8px 32px rgba(0,0,0,0.3);
+      box-shadow: 0 0 0 8px rgba(208,164,85,0.15), 0 8px 32px rgba(0,0,0,0.3);
       font-size: 2rem;
     }
     .hero-sup {
@@ -106,7 +107,7 @@
       letter-spacing: 0.03em;
     }
 
-    /* ─── LAYOUT ──────────────────────────────────────────────────── */
+    /*  LAYOUT  */
     .page-body {
       max-width: 1320px; margin: 0 auto;
       padding: 40px 24px 60px;
@@ -115,7 +116,7 @@
       gap: 0 32px;
     }
 
-    /* ─── PROGRESS ────────────────────────────────────────────────── */
+    /*  PROGRESS  */
     .progress-wrap { margin-bottom: 32px; }
     .progress-steps {
       display: flex; align-items: center; gap: 0;
@@ -127,7 +128,7 @@
       border: 2px solid var(--cream-dk); background: var(--cream);
       color: var(--ink-soft); transition: var(--transition); z-index: 1;
     }
-    .ps-dot.active { background: var(--navy); border-color: var(--navy); color: var(--gold-lt); box-shadow: 0 0 0 5px rgba(15,31,56,0.12); }
+    .ps-dot.active { background: var(--navy); border-color: var(--navy); color: var(--gold-lt); box-shadow: 0 0 0 5px rgba(11,4,31,0.12); }
     .ps-dot.done   { background: var(--gold); border-color: var(--gold); color: var(--white); font-size: 0.8rem; }
     .ps-line {
       flex: 1; height: 2px; background: var(--cream-dk); margin: 0 -1px;
@@ -147,19 +148,19 @@
     .ps-lbl.active { color: var(--navy); }
     .ps-spacer { flex: 1; }
 
-    /* ─── FORM CARD ───────────────────────────────────────────────── */
+    /*  FORM CARD  */
     .form-card {
       background: var(--white);
       border-radius: var(--radius-xl);
       padding: 48px;
       box-shadow: var(--shadow-md);
-      border: 1px solid rgba(15,31,56,0.06);
+      border: 1px solid rgba(11,4,31,0.07);
       position: relative; overflow: hidden;
     }
     .form-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, var(--navy), var(--gold), var(--red));
+      background: linear-gradient(90deg, var(--navy-lt), var(--gold), var(--sky));
     }
     .form-section { display: none; animation: slideIn 0.38s ease forwards; }
     .form-section.active { display: block; }
@@ -179,7 +180,7 @@
       margin-bottom: 36px; max-width: 500px;
     }
 
-    /* ─── FIELDS ──────────────────────────────────────────────────── */
+    /*  FIELDS  */
     .fgrid   { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; margin-bottom: 18px; }
     .fgrid1  { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 18px; }
     .fgrid3  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px 22px; margin-bottom: 18px; }
@@ -222,7 +223,7 @@
     .fi:focus, .fs:focus, .fta:focus {
       border-color: var(--navy);
       background: var(--white);
-      box-shadow: 0 0 0 4px rgba(15,31,56,0.08);
+      box-shadow: 0 0 0 4px rgba(11,4,31,0.08);
     }
     .fi.error, .fs.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(185,50,50,0.1); }
     .err-msg { font-size: 0.7rem; color: var(--red); margin-top: 2px; display: none; }
@@ -259,24 +260,72 @@
       cursor: pointer; text-align: center; transition: var(--transition);
       background: var(--cream); user-select: none;
     }
-    .act-lbl:hover { border-color: var(--navy-lt); background: rgba(15,31,56,0.04); }
+    .act-lbl:hover { border-color: var(--sky); background: var(--sky-pale); }
     .act-item input:checked + .act-lbl {
-      border-color: var(--navy); background: rgba(15,31,56,0.07);
-      box-shadow: 0 0 0 3px rgba(15,31,56,0.1);
+      box-shadow: 0 0 0 3px rgba(11,4,31,0.12);
     }
     .act-icon { font-size: 1.35rem; line-height: 1; }
     .act-txt { font-size: 0.68rem; font-weight: 600; color: var(--ink-mid); letter-spacing: 0.01em; }
-    .act-item input:checked + .act-lbl .act-txt { color: var(--navy); }
+    .act-item input:checked + .act-lbl .act-txt { font-weight: 700; }
+
+    /* Per-activity chip colors when checked */
+    #ac-morning-prayer:checked + .act-lbl { background: rgba(8,54,196,0.09);  border-color: #0836C4; box-shadow: 0 0 0 3px rgba(8,54,196,0.15); }
+    #ac-morning-prayer:checked + .act-lbl .act-txt { color: #0836C4; }
+    #ac-breakfast:checked      + .act-lbl { background: rgba(208,164,85,0.12); border-color: #D0A455; box-shadow: 0 0 0 3px rgba(208,164,85,0.2); }
+    #ac-breakfast:checked      + .act-lbl .act-txt { color: #8B6A20; }
+    #ac-bible:checked          + .act-lbl { background: rgba(12,26,105,0.09);  border-color: #0C1A69; box-shadow: 0 0 0 3px rgba(12,26,105,0.15); }
+    #ac-bible:checked          + .act-lbl .act-txt { color: #0C1A69; }
+    #ac-lunch:checked          + .act-lbl { background: rgba(99,107,47,0.09);  border-color: #636B2F; box-shadow: 0 0 0 3px rgba(99,107,47,0.15); }
+    #ac-lunch:checked          + .act-lbl .act-txt { color: #636B2F; }
+    #ac-dinner:checked         + .act-lbl { background: rgba(11,4,31,0.08);    border-color: #0B041F; box-shadow: 0 0 0 3px rgba(11,4,31,0.15); }
+    #ac-dinner:checked         + .act-lbl .act-txt { color: #0B041F; }
+    #ac-service:checked        + .act-lbl { background: rgba(0,74,169,0.09);   border-color: #004AA9; box-shadow: 0 0 0 3px rgba(0,74,169,0.15); }
+    #ac-service:checked        + .act-lbl .act-txt { color: #004AA9; }
+    #ac-supper:checked         + .act-lbl { background: rgba(42,52,96,0.09);   border-color: #2A3460; box-shadow: 0 0 0 3px rgba(42,52,96,0.15); }
+    #ac-supper:checked         + .act-lbl .act-txt { color: #2A3460; }
+    #ac-outing:checked         + .act-lbl { background: rgba(122,131,56,0.09); border-color: #7A8338; box-shadow: 0 0 0 3px rgba(122,131,56,0.15); }
+    #ac-outing:checked         + .act-lbl .act-txt { color: #7A8338; }
+    #ac-activities:checked     + .act-lbl { background: rgba(223,186,120,0.12);border-color: #DFBA78; box-shadow: 0 0 0 3px rgba(223,186,120,0.2); }
+    #ac-activities:checked     + .act-lbl .act-txt { color: #8B6A20; }
 
     /* Under-18 conditional */
     .cond-block {
-      background: rgba(201,146,42,0.07);
-      border: 1px solid rgba(201,146,42,0.2);
+      background: rgba(208,164,85,0.07);
+      border: 1px solid rgba(208,164,85,0.2);
       border-radius: var(--radius-md);
       padding: 20px; margin: 14px 0;
       transition: opacity 0.3s ease, max-height 0.3s ease;
     }
     .cond-block.hidden-soft { opacity: 0; pointer-events: none; max-height: 0; padding: 0; overflow: hidden; margin: 0; border: none; }
+
+    /* Contribution selector */
+    .contrib-item { position: relative; }
+    .contrib-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .contrib-lbl {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 16px 12px;
+      border: 2px solid var(--cream-dk); border-radius: var(--radius-sm);
+      cursor: pointer; text-align: center; transition: var(--transition);
+      background: var(--cream); user-select: none;
+    }
+    .contrib-lbl:hover { border-color: var(--sky); background: var(--sky-pale); }
+    .contrib-item input:checked + .contrib-lbl {
+      border-color: var(--sky); background: var(--sky-pale);
+      box-shadow: 0 0 0 3px rgba(8,54,196,0.15);
+    }
+    .contrib-region {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-soft);
+    }
+    .contrib-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem; font-weight: 700; color: var(--navy); line-height: 1;
+      transition: var(--transition);
+    }
+    .contrib-item input:checked + .contrib-lbl .contrib-amount { color: var(--sky); }
+    .contrib-currency {
+      font-size: 0.65rem; color: var(--ink-soft); font-weight: 600; letter-spacing: 0.06em;
+    }
 
     /* Payment section */
     .payment-opts {
@@ -294,7 +343,7 @@
     .pay-lbl:hover { border-color: var(--gold); background: var(--gold-pale); }
     .pay-item input:checked + .pay-lbl {
       border-color: var(--gold); background: var(--gold-pale);
-      box-shadow: 0 0 0 3px rgba(201,146,42,0.15);
+      box-shadow: 0 0 0 3px rgba(208,164,85,0.15);
     }
     .pay-logo { font-size: 1.5rem; line-height: 1; }
     .pay-name { font-size: 0.78rem; font-weight: 700; color: var(--ink-mid); }
@@ -302,14 +351,14 @@
 
     /* Section divider */
     .sdiv {
-      border: none; border-top: 1px solid rgba(15,31,56,0.07);
+      border: none; border-top: 1px solid rgba(11,4,31,0.07);
       margin: 28px 0;
     }
 
     /* Info note */
     .info-note {
       display: flex; align-items: flex-start; gap: 10px;
-      background: var(--sky-pale); border: 1px solid rgba(58,127,196,0.2);
+      background: var(--sky-pale); border: 1px solid rgba(8,54,196,0.2);
       border-radius: var(--radius-sm); padding: 14px 16px;
       font-size: 0.775rem; color: var(--ink-mid); line-height: 1.5;
       margin-top: 14px;
@@ -321,7 +370,7 @@
     .form-nav {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 40px; padding-top: 26px;
-      border-top: 1px solid rgba(15,31,56,0.07);
+      border-top: 1px solid rgba(11,4,31,0.07);
     }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -330,15 +379,15 @@
       font-size: 0.855rem; font-weight: 600;
       cursor: pointer; border: none; transition: var(--transition); letter-spacing: 0.02em;
     }
-    .btn-primary { background: var(--navy); color: var(--gold-pale); box-shadow: 0 4px 16px rgba(15,31,56,0.28); }
-    .btn-primary:hover { background: var(--navy-lt); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(15,31,56,0.35); }
+    .btn-primary { background: var(--navy); color: var(--gold-pale); box-shadow: 0 4px 16px rgba(11,4,31,0.28); }
+    .btn-primary:hover { background: var(--navy-lt); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(11,4,31,0.35); }
     .btn-ghost { background: transparent; color: var(--ink-soft); border: 1.5px solid var(--cream-dk); }
     .btn-ghost:hover { border-color: var(--ink-soft); color: var(--ink); }
-    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-lt)); color: var(--white); box-shadow: 0 4px 20px rgba(201,146,42,0.4); }
-    .btn-gold:hover { box-shadow: 0 6px 28px rgba(201,146,42,0.5); transform: translateY(-1px); }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-lt)); color: var(--white); box-shadow: 0 4px 20px rgba(208,164,85,0.4); }
+    .btn-gold:hover { box-shadow: 0 6px 28px rgba(208,164,85,0.5); transform: translateY(-1px); }
     .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-    /* ─── ANALYTICS SIDEBAR ───────────────────────────────────────── */
+    /*  ANALYTICS SIDEBAR  */
     .sidebar {
       display: flex; flex-direction: column; gap: 18px;
       position: sticky; top: 24px;
@@ -351,7 +400,7 @@
     .acard {
       background: var(--white); border-radius: var(--radius-lg);
       padding: 22px; box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(15,31,56,0.06);
+      border: 1px solid rgba(11,4,31,0.07);
       animation: fadeUp 0.4s ease forwards;
     }
     @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
@@ -366,9 +415,9 @@
       font-size: 0.57rem; font-weight: 700; letter-spacing: 0.06em;
     }
     .chip-live    { background: rgba(42,92,72,0.1); color: var(--forest); }
-    .chip-donut   { background: rgba(58,127,196,0.1); color: var(--sky); }
-    .chip-bar     { background: rgba(15,31,56,0.08); color: var(--navy); }
-    .chip-insight { background: rgba(201,146,42,0.12); color: var(--gold); }
+    .chip-donut   { background: rgba(8,54,196,0.1); color: var(--sky); }
+    .chip-bar     { background: rgba(11,4,31,0.08); color: var(--navy); }
+    .chip-insight { background: rgba(208,164,85,0.12); color: var(--gold); }
 
     .acard-title {
       font-family: 'Cormorant Garamond', serif;
@@ -409,8 +458,8 @@
 
     /* Insight box */
     .ibox {
-      background: linear-gradient(135deg, rgba(15,31,56,0.04), rgba(201,146,42,0.04));
-      border: 1px solid rgba(15,31,56,0.08);
+      background: linear-gradient(135deg, rgba(11,4,31,0.04), rgba(208,164,85,0.04));
+      border: 1px solid rgba(11,4,31,0.08);
       border-radius: var(--radius-sm); padding: 12px 14px;
       font-size: 0.75rem; color: var(--ink-mid); line-height: 1.5;
     }
@@ -418,16 +467,16 @@
     .ibox strong { color: var(--navy); }
     .ibox + .ibox { margin-top: 8px; }
 
-    /* ─── SUMMARY ─────────────────────────────────────────────────── */
+    /*  SUMMARY  */
     .sum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-    .sum-stat { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid rgba(15,31,56,0.06); }
+    .sum-stat { background: var(--cream); border-radius: var(--radius-sm); padding: 18px; border: 1px solid rgba(11,4,31,0.06); }
     .sum-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); }
     .sum-key { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
     .sum-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
-    .sum-tag { padding: 4px 12px; border-radius: 100px; background: rgba(15,31,56,0.08); color: var(--navy); font-size: 0.7rem; font-weight: 600; }
+    .sum-tag { padding: 4px 12px; border-radius: 100px; background: rgba(11,4,31,0.08); color: var(--navy); font-size: 0.7rem; font-weight: 600; }
     .cwrap-sum { height: 170px; margin: 16px 0; }
 
-    /* ─── SUCCESS ─────────────────────────────────────────────────── */
+    /*  SUCCESS  */
     .success-view { display: none; text-align: center; padding: 16px 0; }
     .success-view.show { display: block; animation: fadeUp 0.5s ease forwards; }
     .suc-icon {
@@ -435,7 +484,7 @@
       background: linear-gradient(135deg, var(--navy), var(--navy-lt));
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 22px; font-size: 2rem;
-      box-shadow: 0 8px 32px rgba(15,31,56,0.25);
+      box-shadow: 0 8px 32px rgba(11,4,31,0.25);
     }
     .suc-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--navy); margin-bottom: 10px; }
     .suc-sub { color: var(--ink-soft); font-size: 0.875rem; line-height: 1.65; max-width: 400px; margin: 0 auto 28px; }
@@ -443,10 +492,10 @@
       display: inline-block; padding: 10px 22px;
       background: var(--gold-pale); border-radius: var(--radius-md);
       font-size: 0.8rem; color: var(--gold); font-weight: 600;
-      border: 1px solid rgba(201,146,42,0.2); margin-bottom: 28px;
+      border: 1px solid rgba(208,164,85,0.2); margin-bottom: 28px;
     }
 
-    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+    /*  RESPONSIVE  */
     @media (max-width: 960px) {
       .page-body { grid-template-columns: 1fr; }
       .sidebar { grid-column: 1; position: static; max-height: none; display: grid; grid-template-columns: 1fr 1fr; }
@@ -465,25 +514,25 @@
 </head>
 <body>
 
-<!-- ══════════ HERO ══════════ -->
+<!--  HERO  -->
 <div class="hero-banner">
   <div class="hero-inner">
-    <div class="hero-logo">🏕️</div>
+    <img src="AEL.jpg" alt="Assemblée Évangélique de Laval" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin:0 auto 16px;display:block;box-shadow:0 0 0 4px rgba(208,164,85,0.5),0 8px 32px rgba(11,4,31,0.4);" />
     <p class="hero-sup">Assemblée Évangélique de Laval</p>
     <h1 class="hero-title">Camp JAEL <em>2026</em></h1>
     <p class="hero-sub">9th Edition</p>
     <div class="hero-pills">
-      <span class="hero-pill">📅 July 12–17, 2026</span>
-      <span class="hero-pill">📍 Beaupré, Québec, Canada</span>
-      <span class="hero-pill">👥 Ages 14–39</span>
+      <span class="hero-pill"> July 12–17, 2026</span>
+      <span class="hero-pill"> Beaupré, Québec, Canada</span>
+      <span class="hero-pill"> Ages 14–39</span>
     </div>
   </div>
 </div>
 
-<!-- ══════════ BODY ══════════ -->
+<!--  BODY  -->
 <div class="page-body">
 
-  <!-- ─── FORM COLUMN ─── -->
+  <!--  FORM COLUMN  -->
   <main>
 
     <!-- Progress -->
@@ -510,7 +559,7 @@
 
     <div class="form-card">
 
-      <!-- ══ STEP 1: Personal Profile ══ -->
+      <!--  STEP 1: Personal Profile  -->
       <section class="form-section active" id="step-0">
         <p class="step-eyebrow">Step 1 of 5</p>
         <h2 class="step-title">Personal Information</h2>
@@ -550,7 +599,7 @@
           <div class="fg ffull" id="chapBlock" style="display:none;">
             <div class="cond-block">
               <div class="fl" style="margin-bottom:8px;">
-                🛡️ &nbsp;<strong style="color:var(--gold);">Under 18 — Chaperone Required</strong>
+                 &nbsp;<strong style="color:var(--gold);">Under 18 — Chaperone Required</strong>
                 <span class="dtag" data-tip="Conditional field — only shown when age < 18. Good UX practice: never show irrelevant fields.">COND</span>
               </div>
               <div class="fgrid" style="margin-bottom:0;">
@@ -633,7 +682,7 @@
         </div>
       </section>
 
-      <!-- ══ STEP 2: Church / Assembly ══ -->
+      <!--  STEP 2: Church / Assembly  -->
       <section class="form-section" id="step-1">
         <p class="step-eyebrow">Step 2 of 5</p>
         <h2 class="step-title">Your Assembly</h2>
@@ -648,18 +697,18 @@
             <select class="fs" id="s2-assembly" onchange="onAssemblyChange()">
               <option value="">Select your assembly…</option>
               <!-- Max 15 participants per congregation -->
-              <optgroup label="🇨🇦 Canada">
+              <optgroup label=" Canada">
                 <option>Assemblée Évangélique de Laval (Pastor Exavier Noel &amp; Pastor Rosage Beauzil)</option>
                 <option>Assemblée Évangélique de Montreal (Pastor David Paul)</option>
                 <option>Tabernacle Evangelique Mahanaim (Pastor Gesner Dorzin)</option>
                 <option>Gospel Assembly of the Kingdom of Peace (Pastor Ancelot Joseph)</option>
               </optgroup>
-              <optgroup label="🇫🇷 France">
+              <optgroup label=" France">
                 <option>Assemblée Évangélique (Pastor Jean Bazelais)</option>
                 <option>Eglise de la Nouvelle Alliance (Pastor Vitalerme Dorestant)</option>
                 <option>Eglise du Corps de Christ (Pastor Wilner Dumond)</option>
               </optgroup>
-              <optgroup label="🇺🇸 United States">
+              <optgroup label=" United States">
                 <option>Sarasota Gospel Temple (Pastor Edwige Achile)</option>
                 <option>Christian Family Gospel Assembly (Pastor Kennedy Demosthenes)</option>
                 <option>Ansonia Gospel Assembly (Pastor Jowel Guerrier)</option>
@@ -678,13 +727,13 @@
           <!-- Congregation spot counter — shown when assembly is selected -->
           <div id="congregationCounter" style="display:none; margin-top:-8px;">
             <div style="
-              background: linear-gradient(135deg, rgba(15,31,56,0.05), rgba(201,146,42,0.08));
-              border: 1px solid rgba(201,146,42,0.3);
+              background: linear-gradient(135deg, rgba(11,4,31,0.05), rgba(208,164,85,0.08));
+              border: 1px solid rgba(208,164,85,0.3);
               border-radius: var(--radius-sm);
               padding: 12px 16px;
               display: flex; align-items: center; gap: 12px;
             ">
-              <div style="font-size:1.5rem; line-height:1;">⛪</div>
+              <div style="font-size:1.5rem; line-height:1;"></div>
               <div style="flex:1;">
                 <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-mid); margin-bottom:2px;">Congregation Limit</div>
                 <div id="spotCounterText" style="font-size:0.85rem; color:var(--ink); line-height:1.4;"></div>
@@ -712,17 +761,6 @@
             <input class="fi" type="text" id="s2-pastor" placeholder="Auto-filled or enter manually" oninput="fc()" />
           </div>
 
-          <div class="fg">
-            <label class="fl" for="s2-years-church">Years at this Assembly</label>
-            <select class="fs" id="s2-years-church" onchange="fc()">
-              <option value="">Select…</option>
-              <option>Less than 1 year</option>
-              <option>1–2 years</option>
-              <option>3–5 years</option>
-              <option>6–10 years</option>
-              <option>10+ years</option>
-            </select>
-          </div>
         </div>
 
         <hr class="sdiv" />
@@ -755,7 +793,7 @@
         </div>
       </section>
 
-      <!-- ══ STEP 3: Camp Life ══ -->
+      <!--  STEP 3: Camp Life  -->
       <section class="form-section" id="step-2">
         <p class="step-eyebrow">Step 3 of 5</p>
         <h2 class="step-title">Camp Life & Preferences</h2>
@@ -768,29 +806,27 @@
               <span class="dtag" data-tip="Multi-select categorical — each selection adds a data point to the donut chart in real time">DONUT</span>
             </label>
             <div class="act-grid" id="activities-grid">
-              <div class="act-item"><input type="checkbox" id="ac-morning-prayer" value="Morning Prayer" onchange="onActivityChange()" /><label class="act-lbl" for="ac-morning-prayer"><span class="act-icon">🙏</span><span class="act-txt">Morning Prayer</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-breakfast" value="Breakfast" onchange="onActivityChange()" /><label class="act-lbl" for="ac-breakfast"><span class="act-icon">🍳</span><span class="act-txt">Breakfast</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-bible" value="Bible Study" onchange="onActivityChange()" /><label class="act-lbl" for="ac-bible"><span class="act-icon">📖</span><span class="act-txt">Bible Study</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-lunch" value="Lunch" onchange="onActivityChange()" /><label class="act-lbl" for="ac-lunch"><span class="act-icon">🥗</span><span class="act-txt">Lunch</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-dinner" value="Dinner" onchange="onActivityChange()" /><label class="act-lbl" for="ac-dinner"><span class="act-icon">🍽️</span><span class="act-txt">Dinner</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-service" value="Service" onchange="onActivityChange()" /><label class="act-lbl" for="ac-service"><span class="act-icon">⛪</span><span class="act-txt">Service</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-supper" value="Supper" onchange="onActivityChange()" /><label class="act-lbl" for="ac-supper"><span class="act-icon">🌙</span><span class="act-txt">Supper</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-outing" value="Outing" onchange="onActivityChange()" /><label class="act-lbl" for="ac-outing"><span class="act-icon">🌿</span><span class="act-txt">Outing</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-break" value="Break" onchange="onActivityChange()" /><label class="act-lbl" for="ac-break"><span class="act-icon">☕</span><span class="act-txt">Break</span></label></div>
-              <div class="act-item"><input type="checkbox" id="ac-activities" value="Activities" onchange="onActivityChange()" /><label class="act-lbl" for="ac-activities"><span class="act-icon">🎉</span><span class="act-txt">Activities</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-morning-prayer" value="Morning Prayer" onchange="onActivityChange()" /><label class="act-lbl" for="ac-morning-prayer"><span class="act-icon"></span><span class="act-txt">Morning Prayer</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-breakfast" value="Breakfast" onchange="onActivityChange()" /><label class="act-lbl" for="ac-breakfast"><span class="act-icon"></span><span class="act-txt">Breakfast</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-bible" value="Bible Study" onchange="onActivityChange()" /><label class="act-lbl" for="ac-bible"><span class="act-icon"></span><span class="act-txt">Bible Study</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-lunch" value="Lunch" onchange="onActivityChange()" /><label class="act-lbl" for="ac-lunch"><span class="act-icon"></span><span class="act-txt">Lunch</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-dinner" value="Dinner" onchange="onActivityChange()" /><label class="act-lbl" for="ac-dinner"><span class="act-icon"></span><span class="act-txt">Dinner</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-service" value="Service" onchange="onActivityChange()" /><label class="act-lbl" for="ac-service"><span class="act-icon"></span><span class="act-txt">Service</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-supper" value="Supper" onchange="onActivityChange()" /><label class="act-lbl" for="ac-supper"><span class="act-icon"></span><span class="act-txt">Supper</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-outing" value="Outing" onchange="onActivityChange()" /><label class="act-lbl" for="ac-outing"><span class="act-icon"></span><span class="act-txt">Outing</span></label></div>
+              <div class="act-item"><input type="checkbox" id="ac-activities" value="Break" onchange="onActivityChange()" /><label class="act-lbl" for="ac-activities"><span class="act-icon"></span><span class="act-txt">Break</span></label></div>
             </div>
           </div>
         </div>
 
         <div class="fgrid">
           <div class="fg">
-            <label class="fl" for="s3-cabin">Cabin Preference</label>
+            <label class="fl" for="s3-cabin">Lodging Preference</label>
             <select class="fs" id="s3-cabin" onchange="fc()">
               <option value="">No preference</option>
-              <option>Cedar — Quiet &amp; reflective</option>
-              <option>Maple — Social &amp; lively</option>
-              <option>Pine — Nature-focused</option>
-              <option>Oak — Leadership cabin</option>
+              <option>Manoir</option>
+              <option>Lodge</option>
+              <option>Gondoleuse</option>
             </select>
           </div>
           <div class="fg">
@@ -830,7 +866,7 @@
         </div>
       </section>
 
-      <!-- ══ STEP 4: Safety & Payment ══ -->
+      <!--  STEP 4: Safety & Payment  -->
       <section class="form-section" id="step-3">
         <p class="step-eyebrow">Step 4 of 5</p>
         <h2 class="step-title">Safety &amp; Payment</h2>
@@ -876,67 +912,48 @@
         </div>
 
         <div class="info-note">
-          <span class="ni">🔒</span>
+          <span class="ni"></span>
           <p><strong>Data Ethics Note:</strong> In data analytics, we must distinguish between data collected for <em>analysis</em> vs. data collected for <em>operational safety</em>. This section is strictly operational — it will never appear in trend reports or dashboards. Responsible data collection means knowing <em>why</em> you need each data point.</p>
         </div>
 
         <hr class="sdiv" />
 
-        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase;">Contribution Amount</p>
+        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase;">Contribution Amount <span class="req">*</span></p>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;">
-          <div style="background:var(--cream);border:1.5px solid rgba(42,92,72,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
-            <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;">🇨🇦 Canada</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1;">$520</div>
-            <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:2px;">CAD</div>
+
+          <div class="contrib-item">
+            <input type="radio" id="contrib-cad" name="contribution" value="$520 CAD" onchange="fc()" />
+            <label for="contrib-cad" class="contrib-lbl">
+              <div class="contrib-region">Canada</div>
+              <div class="contrib-amount">$520</div>
+              <div class="contrib-currency">CAD</div>
+            </label>
           </div>
-          <div style="background:var(--cream);border:1.5px solid rgba(42,92,72,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
-            <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;">🇺🇸 USA</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1;">$395</div>
-            <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:2px;">USD</div>
+
+          <div class="contrib-item">
+            <input type="radio" id="contrib-usd" name="contribution" value="$395 USD" onchange="fc()" />
+            <label for="contrib-usd" class="contrib-lbl">
+              <div class="contrib-region">USA</div>
+              <div class="contrib-amount">$395</div>
+              <div class="contrib-currency">USD</div>
+            </label>
           </div>
-          <div style="background:var(--cream);border:1.5px solid rgba(42,92,72,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
-            <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;">🇫🇷 France</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1;">€325</div>
-            <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:2px;">EUR</div>
+
+          <div class="contrib-item">
+            <input type="radio" id="contrib-eur" name="contribution" value="€325 EUR" onchange="fc()" />
+            <label for="contrib-eur" class="contrib-lbl">
+              <div class="contrib-region">France</div>
+              <div class="contrib-amount">€325</div>
+              <div class="contrib-currency">EUR</div>
+            </label>
           </div>
+
         </div>
         <div class="info-note" style="margin-bottom:18px;">
-          <span class="ni">ℹ️</span>
+          <span class="ni">ℹ</span>
           <p>Contribution covers <strong>accommodations &amp; transportation</strong>. Select your payment method below. Spaces are limited — <strong>15 participants per congregation</strong>, first-come, first-served.</p>
         </div>
 
-        <p style="font-size:0.8rem;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase;">Payment Option</p>
-        <div class="payment-opts">
-          <div class="pay-item">
-            <input type="radio" name="payment" id="pay-cash" value="CashApp" onchange="onPaymentChange('CashApp')" />
-            <label class="pay-lbl" for="pay-cash">
-              <span class="pay-logo">💸</span>
-              <span class="pay-name">CashApp</span>
-              <span style="font-size:0.65rem;color:var(--ink-soft);">$JAELCAMP</span>
-            </label>
-          </div>
-          <div class="pay-item">
-            <input type="radio" name="payment" id="pay-zelle" value="Zelle" onchange="onPaymentChange('Zelle')" />
-            <label class="pay-lbl" for="pay-zelle">
-              <span class="pay-logo">⚡</span>
-              <span class="pay-name">Zelle</span>
-              <span style="font-size:0.65rem;color:var(--ink-soft);">camp@jael.org</span>
-            </label>
-          </div>
-          <div class="pay-item">
-            <input type="radio" name="payment" id="pay-check" value="Check" onchange="onPaymentChange('Check')" />
-            <label class="pay-lbl" for="pay-check">
-              <span class="pay-logo">📄</span>
-              <span class="pay-name">Check</span>
-              <span style="font-size:0.65rem;color:var(--ink-soft);">Payable to Camp JAEL</span>
-            </label>
-          </div>
-        </div>
-
-        <div id="payment-details" class="info-note" style="display:none; margin-top:14px;">
-          <span class="ni">💳</span>
-          <p id="payment-detail-text"></p>
-        </div>
 
         <div class="form-nav">
           <button class="btn btn-ghost" onclick="goTo(2)">
@@ -950,7 +967,7 @@
         </div>
       </section>
 
-      <!-- ══ STEP 5: Summary Dashboard ══ -->
+      <!--  STEP 5: Summary Dashboard  -->
       <section class="form-section" id="step-4">
         <p class="step-eyebrow">Step 5 of 5 · Your Data Dashboard</p>
         <h2 class="step-title">Review your registration</h2>
@@ -962,7 +979,7 @@
         <div id="summaryAssembly" style="margin-top:14px;"></div>
 
         <div class="info-note" style="margin-top:18px;">
-          <span class="ni">📊</span>
+          <span class="ni"></span>
           <p><strong>UI/UX Design Pattern:</strong> This "review" step is called a <strong>confirmation screen</strong>. It reduces form abandonment by giving users a chance to catch errors. It also teaches data visualization — turning raw form inputs into a readable summary is a core analytics skill.</p>
         </div>
 
@@ -972,48 +989,48 @@
             Edit
           </button>
           <button class="btn btn-gold" onclick="submitForm()">
-            Submit Registration 🙌
+            Submit Registration 
           </button>
         </div>
       </section>
 
-      <!-- ══ SUCCESS ══ -->
+      <!--  SUCCESS  -->
       <div class="success-view" id="successView">
-        <div class="suc-icon">🏕️</div>
+        <div class="suc-icon"></div>
         <h2 class="suc-title">You're registered!</h2>
         <p class="suc-sub">Welcome to Camp JAEL 2026 — 9th Edition (July 12–17, Beaupré, QC). A confirmation has been sent to your email. We're so excited to see you this summer — come ready to grow, worship, and make memories that last.</p>
         <div id="sucAssembly" class="suc-assembly"></div>
         <br/>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:16px;">
           <button class="btn btn-primary" onclick="resetForm()">Register Another Camper</button>
-          <button class="btn btn-gold" onclick="exportCSV()">⬇ Download Camp Report (CSV)</button>
+          <button class="btn btn-gold" onclick="exportCSV()"> Download Camp Report (CSV)</button>
         </div>
       </div>
 
     </div><!-- /form-card -->
   </main>
 
-  <!-- ─── ANALYTICS SIDEBAR ─── -->
+  <!--  ANALYTICS SIDEBAR  -->
   <aside class="sidebar">
 
     <!-- Venue & Cost Card -->
     <div class="acard" style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%);color:white;border:none;">
-      <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:6px;">📍 Venue &amp; Costs</div>
+      <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:6px;"> Venue &amp; Costs</div>
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:white;margin-bottom:2px;">Manoir Mont-Sainte-Anne</div>
       <div style="font-size:0.78rem;color:rgba(255,255,255,0.65);margin-bottom:14px;">1 Rue des Érables, Beaupré, Québec · July 12–17, 2026</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
         <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:center;">
-          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;">🇨🇦 Canada</div>
+          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;"> Canada</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);">$520</div>
           <div style="font-size:0.58rem;color:rgba(255,255,255,0.4);">CAD</div>
         </div>
         <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:center;">
-          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;">🇺🇸 USA</div>
+          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;"> USA</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);">$395</div>
           <div style="font-size:0.58rem;color:rgba(255,255,255,0.4);">USD</div>
         </div>
         <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px;text-align:center;">
-          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;">🇫🇷 France</div>
+          <div style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px;"> France</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold-lt);">€325</div>
           <div style="font-size:0.58rem;color:rgba(255,255,255,0.4);">EUR</div>
         </div>
@@ -1037,7 +1054,7 @@
       </div>
       <div style="font-size:0.65rem;color:var(--ink-soft);margin-top:5px;font-family:'DM Mono',monospace;">39% capacity · Filling fast</div>
       <div class="ibox" style="margin-top:12px;">
-        <span class="ii">💡</span>
+        <span class="ii"></span>
         <strong>KPI Counter:</strong> A Key Performance Indicator — the simplest form of data visualization. One number that tells the story.
       </div>
     </div>
@@ -1069,7 +1086,7 @@
       <div class="acard-desc">Based on demo data + your selections. Select activities on Step 3 to see this chart shift live.</div>
       <div class="cwrap"><canvas id="activityChart"></canvas></div>
       <div class="ibox" style="margin-top:12px;">
-        <span class="ii">📐</span>
+        <span class="ii"></span>
         <strong>When to use a donut:</strong> Best for 5–8 categories showing part-to-whole. Avoid when all slices are similar sizes.
       </div>
     </div>
@@ -1081,7 +1098,7 @@
       <div class="acard-desc">Your age group is highlighted in gold when you fill in Step 1. Enter your age to see where you land.</div>
       <div class="cwrap-sm"><canvas id="ageChart"></canvas></div>
       <div class="ibox" style="margin-top:12px;">
-        <span class="ii">📏</span>
+        <span class="ii"></span>
         <strong>Design rule:</strong> Highlight the user's own data point. It creates a personal connection and teaches <em>contextual comparison</em>.
       </div>
     </div>
@@ -1093,7 +1110,7 @@
       <div class="acard-desc">Simulated breakdown by assembly. Select yours on Step 2 to see your church highlighted.</div>
       <div class="cwrap-sm"><canvas id="churchChart"></canvas></div>
       <div class="ibox" style="margin-top:12px;">
-        <span class="ii">⛪</span>
+        <span class="ii"></span>
         <strong>Cost analysis use:</strong> This chart helps planners allocate resources, negotiate group rates, and coordinate transportation by church cluster.
       </div>
     </div>
@@ -1104,34 +1121,34 @@
       <div class="acard-title">What the data says</div>
       <div class="acard-desc">Data analysts transform numbers into narratives. Here's this camp's story so far:</div>
       <div class="ibox">
-        <span class="ii">🏕️</span>
+        <span class="ii"></span>
         <strong>47 campers</strong> registered across <strong>12 assemblies</strong>. The largest group comes from <strong>Laval &amp; Montreal</strong>.
       </div>
       <div class="ibox" id="dynamicInsight">
-        <span class="ii">✨</span>
+        <span class="ii"></span>
         Select your activities in Step 3 to generate a personalized insight.
       </div>
       <div class="ibox" style="margin-top:8px;">
-        <span class="ii">💰</span>
+        <span class="ii"></span>
         <strong>Cost planning:</strong> With 47 campers × $X registration fee, you can model revenue projections and break-even analysis — real applied analytics!
       </div>
     </div>
 
     <!-- Data Export -->
-    <div class="acard" style="border: 1.5px solid rgba(201,146,42,0.3); background: linear-gradient(135deg, var(--gold-pale), var(--cream));">
+    <div class="acard" style="border: 1.5px solid rgba(208,164,85,0.3); background: linear-gradient(135deg, var(--gold-pale), var(--cream));">
       <div class="acard-eyebrow"><span class="chip chip-live">EXPORT</span> Camp Director</div>
       <div class="acard-title">Download Report</div>
       <div class="acard-desc">Export all stored registration data as JSON or CSV for analysis in Excel, Google Sheets, or any BI tool.</div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
         <button class="btn btn-primary" onclick="exportJSON()" style="width:100%;justify-content:center;font-size:0.8rem;padding:10px;">
-          ⬇ Export as JSON
+           Export as JSON
         </button>
         <button class="btn btn-ghost" onclick="exportCSV()" style="width:100%;justify-content:center;font-size:0.8rem;padding:10px;">
-          ⬇ Export as CSV (Excel)
+           Export as CSV (Excel)
         </button>
       </div>
       <div class="ibox" style="margin-top:10px;">
-        <span class="ii">📋</span>
+        <span class="ii"></span>
         <strong>Data Analytics tip:</strong> JSON is best for nested/relational data. CSV is best for spreadsheet tools like Excel. Both are industry-standard formats.
       </div>
     </div>
@@ -1139,17 +1156,17 @@
   </aside>
 </div>
 
-<!-- ════════════════════════════════════════════
+<!-- 
      BACKEND DATA COLLECTION & ANALYTICS ENGINE
      (In production: replace localStorage with a real API call)
-     ════════════════════════════════════════════ -->
+      -->
 <script>
-// ─────────────────────────────────────────────────────────────────
+// 
 //  ANALYTICS DATA STORE
 //  In production, sessionData is POSTed to your server/database.
 //  All fields below are intentionally comprehensive for future
 //  reporting, cost analysis, and trend visualization.
-// ─────────────────────────────────────────────────────────────────
+// 
 const sessionData = {
   meta: {
     formVersion: '2026.1',
@@ -1236,6 +1253,7 @@ function collectAllData() {
 
   sessionData.payment = {
     method: getR('payment'),
+    contributionAmount: getR('contribution'),
   };
 
   // Derived analytics fields
@@ -1263,24 +1281,24 @@ function collectAllData() {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────
+// 
 //  CHART SETUP
-// ─────────────────────────────────────────────────────────────────
+// 
 Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.color = '#8A8AAA';
+Chart.defaults.color = '#A4A7A8';
 
 let activityChart, ageChart, churchChart, summaryChart;
 
 const ACTIVITY_COLORS = {
-  'Morning Prayer': '#3A7FC4', 'Breakfast': '#C9922A', 'Bible Study': '#7A5C8A',
-  'Lunch': '#2A5C48', 'Dinner': '#0F1F38', 'Service': '#B93232',
-  'Supper': '#4A4A6A', 'Outing': '#3D7A62', 'Break': '#7AAFC8', 'Activities': '#C9922A'
+  'Morning Prayer': '#0836C4', 'Breakfast': '#D0A455', 'Bible Study': '#0C1A69',
+  'Lunch': '#636B2F',          'Dinner': '#0B041F',   'Service': '#004AA9',
+  'Supper': '#2A3460',         'Outing': '#7A8338',   'Break': '#DFBA78'
 };
 
 const BASE_ACTIVITY_DATA = {
   'Morning Prayer': 38, 'Breakfast': 42, 'Bible Study': 35,
   'Lunch': 42, 'Dinner': 40, 'Service': 30,
-  'Supper': 38, 'Outing': 28, 'Break': 32, 'Activities': 25
+  'Supper': 38, 'Outing': 28, 'Break': 25
 };
 
 const PASTOR_MAP = {
@@ -1336,7 +1354,7 @@ function initCharts() {
     data: {
       labels: ageLabels,
       datasets: [{ label: 'Campers', data: ageVals,
-        backgroundColor: ageLabels.map((_,i) => i === 1 ? 'rgba(15,31,56,0.85)' : 'rgba(15,31,56,0.25)'),
+        backgroundColor: ageLabels.map((_,i) => i === 1 ? 'rgba(11,4,31,0.85)' : 'rgba(11,4,31,0.25)'),
         borderRadius: 5, borderSkipped: false }]
     },
     options: {
@@ -1356,7 +1374,7 @@ function initCharts() {
     data: {
       labels: Object.keys(BASE_CHURCH_DATA),
       datasets: [{ label: 'Campers', data: Object.values(BASE_CHURCH_DATA),
-        backgroundColor: 'rgba(201,146,42,0.35)', borderRadius: 5, borderSkipped: false }]
+        backgroundColor: 'rgba(8,54,196,0.25)', borderRadius: 5, borderSkipped: false }]
     },
     options: {
       indexAxis: 'y',
@@ -1370,9 +1388,9 @@ function initCharts() {
   });
 }
 
-// ─────────────────────────────────────────────────────────────────
+// 
 //  FORM LOGIC
-// ─────────────────────────────────────────────────────────────────
+// 
 let currentStep = 0;
 const TOTAL = 5;
 
@@ -1429,7 +1447,7 @@ function onAgeChange() {
     ageRanges.forEach(([lo,up], i) => { if (age >= lo && age <= up) hi = i; });
   }
   ageChart.data.datasets[0].backgroundColor = ageLabels.map((_,i) =>
-    i === hi ? 'rgba(201,146,42,0.9)' : 'rgba(15,31,56,0.25)'
+    i === hi ? '#0836C4' : 'rgba(11,4,31,0.18)'
   );
   ageChart.update();
   fc();
@@ -1448,11 +1466,11 @@ function onActivityChange() {
   // Dynamic insight
   const box = document.getElementById('dynamicInsight');
   if (checked.length === 0) {
-    box.innerHTML = '<span class="ii">✨</span> Select your activities in Step 3 to generate a personalized insight.';
+    box.innerHTML = '<span class="ii"></span> Select your activities in Step 3 to generate a personalized insight.';
   } else {
     const top = checked[0].value;
     const pct = Math.round((BASE_ACTIVITY_DATA[top] / 47) * 100);
-    box.innerHTML = `<span class="ii">🎯</span> <strong>${pct}% of registered campers</strong> also love <strong>${top}</strong>. You're in great company!`;
+    box.innerHTML = `<span class="ii"></span> <strong>${pct}% of registered campers</strong> also love <strong>${top}</strong>. You're in great company!`;
   }
   fc();
 }
@@ -1481,11 +1499,11 @@ function onAssemblyChange() {
     : null;
   const churchLabels = Object.keys(BASE_CHURCH_DATA);
   churchChart.data.datasets[0].backgroundColor = churchLabels.map(l =>
-    l === shortName ? 'rgba(201,146,42,0.9)' : 'rgba(201,146,42,0.3)'
+    l === shortName ? '#0836C4' : 'rgba(8,54,196,0.25)'
   );
   churchChart.update();
 
-  // ── Congregation spot countdown ──────────────────────────────
+  //  Congregation spot countdown 
   const counter   = document.getElementById('congregationCounter');
   const counterTxt = document.getElementById('spotCounterText');
   const spotsEl   = document.getElementById('spotsRemaining');
@@ -1505,19 +1523,19 @@ function onAssemblyChange() {
 
     const remaining = Math.max(0, MAX_SPOTS - taken);
     const pct = Math.round((taken / MAX_SPOTS) * 100);
-    const color = remaining <= 3 ? '#B93232' : remaining <= 7 ? '#C9922A' : '#2A5C48';
+    const color = remaining <= 3 ? '#8B1C1C' : remaining <= 7 ? '#D0A455' : '#0836C4';
 
     spotsEl.textContent = remaining;
     spotsEl.style.color = color;
     barEl.style.width = pct + '%';
     barEl.style.background = remaining <= 3
-      ? 'linear-gradient(90deg,#B93232,#D45555)'
+      ? 'linear-gradient(90deg,#8B1C1C,#B02424)'
       : remaining <= 7
-      ? 'linear-gradient(90deg,#C9922A,#E8B55A)'
-      : 'linear-gradient(90deg,var(--navy),var(--gold))';
+      ? 'linear-gradient(90deg,#D0A455,#DFBA78)'
+      : 'linear-gradient(90deg,var(--navy-lt),var(--sky))';
     barLbl.textContent = `${taken} / ${MAX_SPOTS} spots taken from this assembly`;
     counterTxt.innerHTML = remaining === 0
-      ? `<strong style="color:#B93232;">This congregation is full.</strong> Contact your pastor about the waitlist.`
+      ? `<strong style="color:#8B1C1C;">This congregation is full.</strong> Contact your pastor about the waitlist.`
       : `<strong>${remaining} spot${remaining !== 1 ? 's' : ''} available</strong> from your congregation. First-come, first-served — register early!`;
     counter.style.display = '';
   }
@@ -1546,7 +1564,7 @@ function goTo(step) {
     const lbl  = document.getElementById(`lbl-${i}`);
     dot.classList.remove('active','done');
     if (lbl) lbl.classList.remove('active');
-    if (i < step)  { dot.classList.add('done'); dot.innerHTML = '✓'; if (line) line.classList.add('filled'); }
+    if (i < step)  { dot.classList.add('done'); dot.innerHTML = ''; if (line) line.classList.add('filled'); }
     else if (i === step) { dot.classList.add('active'); dot.innerHTML = i+1; if (lbl) lbl.classList.add('active'); if (line) line.classList.remove('filled'); }
     else           { dot.innerHTML = i+1; if (line) line.classList.remove('filled'); }
   }
@@ -1572,14 +1590,14 @@ function buildSummary() {
     <div class="sum-stat"><div class="sum-val">${get('s1-fn') || '—'} ${get('s1-ln')}</div><div class="sum-key">Full Name</div></div>
     <div class="sum-stat"><div class="sum-val">${get('s1-age') || '—'}</div><div class="sum-key">Age</div></div>
     <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${get('s1-tshirt') || '—'}</div><div class="sum-key">T-Shirt Size</div></div>
-    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('payment')}</div><div class="sum-key">Payment Method</div></div>
-    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('transport')}</div><div class="sum-key">Transportation</div></div>
-    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${get('s2-years-church') || '—'}</div><div class="sum-key">Years at Assembly</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('contribution') || '—'}</div><div class="sum-key">Contribution</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('payment') || '—'}</div><div class="sum-key">Payment Method</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('transport') || '—'}</div><div class="sum-key">Transportation</div></div>
   `;
 
   document.getElementById('summaryAssembly').innerHTML = assemblyShort ? `
     <div class="info-note">
-      <span class="ni">⛪</span>
+      <span class="ni"></span>
       <p><strong>Assembly:</strong> ${assemblyShort}<br/>
       <strong>Pastor:</strong> ${get('s2-pastor') || '—'}<br/>
       <strong>Camp history:</strong> ${getR('prev-camp')}</p>
@@ -1620,14 +1638,14 @@ function submitForm() {
   const name = document.getElementById('s1-fn').value || 'Camper';
   const assemblyRaw = document.getElementById('s2-assembly').value;
   const assemblyShort = assemblyRaw.split('(')[0].trim() || 'Your Assembly';
-  document.getElementById('sucAssembly').textContent = '⛪ ' + assemblyShort;
+  document.getElementById('sucAssembly').textContent = ' ' + assemblyShort;
   document.getElementById('successView').classList.add('show');
-  console.log('[JAEL Camp] ✅ Form submitted. Full data payload logged and stored.');
+  console.log('[JAEL Camp]  Form submitted. Full data payload logged and stored.');
 }
 
-// ─────────────────────────────────────────────────────────────────
+// 
 //  DATA EXPORT FUNCTIONS (for camp directors & data analysis)
-// ─────────────────────────────────────────────────────────────────
+// 
 function getAllRegistrations() {
   try {
     return JSON.parse(localStorage.getItem('jaelCampRegistrations') || '[]');
@@ -1753,14 +1771,14 @@ function resetForm() {
   activityChart.update();
 
   const ageLabels = ['13–15','16–19','20–24','25–29','30–34','35–39'];
-  ageChart.data.datasets[0].backgroundColor = ageLabels.map((_,i) => i===1?'rgba(15,31,56,0.85)':'rgba(15,31,56,0.25)');
+  ageChart.data.datasets[0].backgroundColor = ageLabels.map((_,i) => i===1?'#0836C4':'rgba(11,4,31,0.18)');
   ageChart.update();
 
   const churchLabels = Object.keys(BASE_CHURCH_DATA);
-  churchChart.data.datasets[0].backgroundColor = churchLabels.map(() => 'rgba(201,146,42,0.35)');
+  churchChart.data.datasets[0].backgroundColor = churchLabels.map(() => 'rgba(8,54,196,0.25)');
   churchChart.update();
 
-  document.getElementById('dynamicInsight').innerHTML = '<span class="ii">✨</span> Select your activities in Step 3 to generate a personalized insight.';
+  document.getElementById('dynamicInsight').innerHTML = '<span class="ii"></span> Select your activities in Step 3 to generate a personalized insight.';
 
   // Reset progress dots
   for (let i = 0; i < TOTAL; i++) {
@@ -1779,9 +1797,9 @@ function resetForm() {
   updateRing();
 }
 
-// ─────────────────────────────────────────────────────────────────
+// 
 //  LIVE COUNTER
-// ─────────────────────────────────────────────────────────────────
+// 
 let counterVal = 47;
 function bumpCounter() {
   counterVal += Math.floor(Math.random() * 2) + 1;
@@ -1795,9 +1813,9 @@ function bumpCounter() {
 }
 setInterval(() => { bumpCounter(); }, 5000 + Math.random() * 4000);
 
-// ─────────────────────────────────────────────────────────────────
+// 
 //  INIT
-// ─────────────────────────────────────────────────────────────────
+// 
 document.addEventListener('DOMContentLoaded', () => {
   initCharts();
   updateRing();
