@@ -349,6 +349,35 @@
     .pay-name { font-size: 0.78rem; font-weight: 700; color: var(--ink-mid); }
     .pay-item input:checked + .pay-lbl .pay-name { color: var(--gold); }
 
+    /* Payment pop-up panel */
+    .pay-panel {
+      display: none; margin-bottom: 18px;
+      border: 1.5px solid var(--cream-dk); border-radius: var(--radius);
+      padding: 18px 20px; background: var(--cream);
+      animation: slideIn 0.2s ease;
+    }
+    .pay-panel.active { display: block; }
+    .pay-panel-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px;
+    }
+    .pay-btn-group { display: flex; flex-direction: column; gap: 10px; }
+    .pay-btn {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--cream-dk); border-radius: var(--radius-sm);
+      background: var(--cream); cursor: pointer;
+      transition: var(--transition); text-align: left; width: 100%;
+      font-family: inherit;
+    }
+    .pay-btn:hover { border-color: var(--sky); background: var(--sky-pale); }
+    .pay-btn.selected { border-color: var(--sky); background: var(--sky-pale); box-shadow: 0 0 0 3px rgba(8,54,196,0.12); }
+    .pay-btn img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; border-radius: 6px; }
+    .pay-btn-text { display: flex; flex-direction: column; gap: 2px; }
+    .pay-btn-label { font-size: 0.82rem; font-weight: 700; color: var(--navy); }
+    .pay-btn-detail { font-size: 0.78rem; color: var(--ink-mid); font-family: 'DM Mono', monospace; }
+    .pay-btn.selected .pay-btn-label { color: var(--sky); }
+
     /* Section divider */
     .sdiv {
       border: none; border-top: 1px solid rgba(11,4,31,0.07);
@@ -922,7 +951,7 @@
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;">
 
           <div class="contrib-item">
-            <input type="radio" id="contrib-cad" name="contribution" value="$520 CAD" onchange="fc()" />
+            <input type="radio" id="contrib-cad" name="contribution" value="$520 CAD" onchange="onContribChange('cad');fc()" />
             <label for="contrib-cad" class="contrib-lbl">
               <div class="contrib-region">Canada</div>
               <div class="contrib-amount">$520</div>
@@ -931,7 +960,7 @@
           </div>
 
           <div class="contrib-item">
-            <input type="radio" id="contrib-usd" name="contribution" value="$395 USD" onchange="fc()" />
+            <input type="radio" id="contrib-usd" name="contribution" value="$395 USD" onchange="onContribChange('usd');fc()" />
             <label for="contrib-usd" class="contrib-lbl">
               <div class="contrib-region">USA</div>
               <div class="contrib-amount">$395</div>
@@ -940,7 +969,7 @@
           </div>
 
           <div class="contrib-item">
-            <input type="radio" id="contrib-eur" name="contribution" value="€325 EUR" onchange="fc()" />
+            <input type="radio" id="contrib-eur" name="contribution" value="€325 EUR" onchange="onContribChange('eur');fc()" />
             <label for="contrib-eur" class="contrib-lbl">
               <div class="contrib-region">France</div>
               <div class="contrib-amount">€325</div>
@@ -949,9 +978,59 @@
           </div>
 
         </div>
+
+        <!-- CAD panel -->
+        <div id="pay-panel-cad" class="pay-panel">
+          <div class="pay-panel-title">How to send your contribution</div>
+          <div class="pay-btn-group">
+            <button type="button" class="pay-btn" id="pay-btn-interac" onclick="selectPayBtn('pay-btn-interac','Interac')">
+              <img src="interac.png" alt="Interac" />
+              <div class="pay-btn-text">
+                <span class="pay-btn-label">Use Interac e-Transfer</span>
+                <span class="pay-btn-detail">(514) 953-4858 &nbsp;·&nbsp; Code: JAEL2026</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- USD panel -->
+        <div id="pay-panel-usd" class="pay-panel">
+          <div class="pay-panel-title">Choose one payment method</div>
+          <div class="pay-btn-group">
+            <button type="button" class="pay-btn" id="pay-btn-cashapp" onclick="selectPayBtn('pay-btn-cashapp','CashApp')">
+              <img src="cashapp.png" alt="Cash App" />
+              <div class="pay-btn-text">
+                <span class="pay-btn-label">Cash App</span>
+                <span class="pay-btn-detail">$CampJael2020</span>
+              </div>
+            </button>
+            <button type="button" class="pay-btn" id="pay-btn-zelle" onclick="selectPayBtn('pay-btn-zelle','Zelle')">
+              <img src="zelle.png" alt="Zelle" />
+              <div class="pay-btn-text">
+                <span class="pay-btn-label">Zelle</span>
+                <span class="pay-btn-detail">941-465-3314</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- EUR panel -->
+        <div id="pay-panel-eur" class="pay-panel">
+          <div class="pay-panel-title">How to send your contribution</div>
+          <div class="pay-btn-group">
+            <button type="button" class="pay-btn" id="pay-btn-whatsapp" onclick="selectPayBtn('pay-btn-whatsapp','WhatsApp')">
+              <img src="whatsapp.png" alt="WhatsApp" />
+              <div class="pay-btn-text">
+                <span class="pay-btn-label">Contact Bro. Jessy Bazelais</span>
+                <span class="pay-btn-detail">+33 06 46 81 11 66</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
         <div class="info-note" style="margin-bottom:18px;">
           <span class="ni">ℹ</span>
-          <p>Contribution covers <strong>accommodations &amp; transportation</strong>. Select your payment method below. Spaces are limited — <strong>15 participants per congregation</strong>, first-come, first-served.</p>
+          <p>Contribution covers <strong>accommodations &amp; transportation</strong>. Spaces are limited — <strong>15 participants per congregation</strong>, first-come, first-served.</p>
         </div>
 
 
@@ -1252,7 +1331,7 @@ function collectAllData() {
   };
 
   sessionData.payment = {
-    method: getR('payment'),
+    method: sessionData.payment?.method || '',
     contributionAmount: getR('contribution'),
   };
 
@@ -1543,6 +1622,26 @@ function onAssemblyChange() {
   fc();
 }
 
+function onContribChange(currency) {
+  ['cad','usd','eur'].forEach(c => {
+    const el = document.getElementById('pay-panel-' + c);
+    if (el) el.classList.toggle('active', c === currency);
+  });
+  // Clear any selected pay button when switching currency
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
+  sessionData.payment.method = '';
+}
+
+function selectPayBtn(btnId, methodName) {
+  // Within the same panel, only one can be selected
+  const btn = document.getElementById(btnId);
+  const panel = btn.closest('.pay-panel');
+  panel.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  sessionData.payment.method = methodName;
+  fc();
+}
+
 function onPaymentChange(method) {
   const details = {
     'CashApp': '<strong>CashApp:</strong> Send payment to <strong>$JAELCAMP2026</strong>. Include your full name in the memo.',
@@ -1591,7 +1690,7 @@ function buildSummary() {
     <div class="sum-stat"><div class="sum-val">${get('s1-age') || '—'}</div><div class="sum-key">Age</div></div>
     <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${get('s1-tshirt') || '—'}</div><div class="sum-key">T-Shirt Size</div></div>
     <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('contribution') || '—'}</div><div class="sum-key">Contribution</div></div>
-    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('payment') || '—'}</div><div class="sum-key">Payment Method</div></div>
+    <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${sessionData.payment?.method || '—'}</div><div class="sum-key">Payment Method</div></div>
     <div class="sum-stat"><div class="sum-val" style="font-size:1rem;">${getR('transport') || '—'}</div><div class="sum-key">Transportation</div></div>
   `;
 
@@ -1762,6 +1861,8 @@ function resetForm() {
   document.getElementById('chapBlock').style.display = 'none';
   document.getElementById('otherAssemblyField').style.display = 'none';
   document.getElementById('payment-details').style.display = 'none';
+  ['cad','usd','eur'].forEach(c => { const el = document.getElementById('pay-panel-' + c); if (el) el.classList.remove('active'); });
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
 
   // Reset charts
   const labels = Object.keys(BASE_ACTIVITY_DATA);
