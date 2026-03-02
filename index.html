@@ -574,15 +574,12 @@
         <div class="ps-dot" id="dot-2">3</div>
         <div class="ps-line" id="line-2"></div>
         <div class="ps-dot" id="dot-3">4</div>
-        <div class="ps-line" id="line-3"></div>
-        <div class="ps-dot" id="dot-4">5</div>
       </div>
       <div class="ps-labels">
         <div class="ps-lbl-wrap"><span class="ps-lbl active" id="lbl-0">Profile</span><span class="ps-spacer"></span></div>
-        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-1">Church</span><span class="ps-spacer"></span></div>
-        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-2">Camp Life</span><span class="ps-spacer"></span></div>
-        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-3">Safety</span><span class="ps-spacer"></span></div>
-        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-4">Review</span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-1">Camp Life</span><span class="ps-spacer"></span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-2">Safety</span><span class="ps-spacer"></span></div>
+        <div class="ps-lbl-wrap"><span class="ps-lbl" id="lbl-3">Review</span></div>
       </div>
     </div>
 
@@ -590,7 +587,7 @@
 
       <!--  STEP 1: Personal Profile  -->
       <section class="form-section active" id="step-0">
-        <p class="step-eyebrow">Step 1 of 5</p>
+        <p class="step-eyebrow">Step 1 of 4</p>
         <h2 class="step-title">Personal Information</h2>
         <p class="step-desc">Your basic details help us personalize your experience and power the live analytics dashboard on the right.</p>
 
@@ -702,20 +699,7 @@
           </div>
         </div>
 
-        <div class="form-nav">
-          <div></div>
-          <button class="btn btn-primary" onclick="goTo(1)">
-            Next: Church Info
-            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </section>
-
-      <!--  STEP 2: Church / Assembly  -->
-      <section class="form-section" id="step-1">
-        <p class="step-eyebrow">Step 2 of 5</p>
-        <h2 class="step-title">Your Assembly</h2>
-        <p class="step-desc">Knowing which church you attend helps us coordinate with your pastor and track which assemblies are most represented at camp.</p>
+        <hr class="sdiv" />
 
         <div class="fgrid1">
           <div class="fg">
@@ -811,20 +795,17 @@
         </div>
 
         <div class="form-nav">
-          <button class="btn btn-ghost" onclick="goTo(0)">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Back
-          </button>
-          <button class="btn btn-primary" onclick="goTo(2)">
+          <div></div>
+          <button class="btn btn-primary" onclick="goTo(1)">
             Next: Camp Life
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </section>
 
-      <!--  STEP 3: Camp Life  -->
-      <section class="form-section" id="step-2">
-        <p class="step-eyebrow">Step 3 of 5</p>
+      <!--  STEP 2: Camp Life  -->
+      <section class="form-section" id="step-1">
+        <p class="step-eyebrow">Step 2 of 4</p>
         <h2 class="step-title">Camp Life & Preferences</h2>
         <p class="step-desc">Select your interests — watch the donut chart update live as you choose! These choices help us plan sessions and staffing.</p>
 
@@ -884,20 +865,20 @@
         </div>
 
         <div class="form-nav">
-          <button class="btn btn-ghost" onclick="goTo(1)">
+          <button class="btn btn-ghost" onclick="goTo(0)">
             <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Back
           </button>
-          <button class="btn btn-primary" onclick="goTo(3)">
+          <button class="btn btn-primary" onclick="goTo(2)">
             Next: Safety & Payment
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </section>
 
-      <!--  STEP 4: Safety & Payment  -->
-      <section class="form-section" id="step-3">
-        <p class="step-eyebrow">Step 4 of 5</p>
+      <!--  STEP 3: Safety & Payment  -->
+      <section class="form-section" id="step-2">
+        <p class="step-eyebrow">Step 3 of 4</p>
         <h2 class="step-title">Safety &amp; Payment</h2>
         <p class="step-desc">Your safety information is stored securely and only used in emergencies. Payment confirms your spot at camp.</p>
 
@@ -1035,20 +1016,20 @@
 
 
         <div class="form-nav">
-          <button class="btn btn-ghost" onclick="goTo(2)">
+          <button class="btn btn-ghost" onclick="goTo(1)">
             <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Back
           </button>
-          <button class="btn btn-primary" onclick="goTo(4)">
+          <button class="btn btn-primary" onclick="goTo(3)">
             Review My Registration
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </section>
 
-      <!--  STEP 5: Summary Dashboard  -->
-      <section class="form-section" id="step-4">
-        <p class="step-eyebrow">Step 5 of 5 · Your Data Dashboard</p>
+      <!--  STEP 4: Summary Dashboard  -->
+      <section class="form-section" id="step-3">
+        <p class="step-eyebrow">Step 4 of 4 · Your Data Dashboard</p>
         <h2 class="step-title">Review your registration</h2>
         <p class="step-desc">This is what a data analyst sees after collecting responses — your answers turned into a personal data snapshot. Verify everything looks correct before submitting.</p>
 
@@ -1063,7 +1044,7 @@
         </div>
 
         <div class="form-nav">
-          <button class="btn btn-ghost" onclick="goTo(3)">
+          <button class="btn btn-ghost" onclick="goTo(2)">
             <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Edit
           </button>
@@ -1186,7 +1167,7 @@
     <div class="acard">
       <div class="acard-eyebrow"><span class="chip chip-insight">BAR CHART</span> Assemblies</div>
       <div class="acard-title">Churches attending</div>
-      <div class="acard-desc">Simulated breakdown by assembly. Select yours on Step 2 to see your church highlighted.</div>
+      <div class="acard-desc">Simulated breakdown by assembly. Select yours in Step 1 to see your church highlighted.</div>
       <div class="cwrap-sm"><canvas id="churchChart"></canvas></div>
       <div class="ibox" style="margin-top:12px;">
         <span class="ii"></span>
@@ -1471,7 +1452,7 @@ function initCharts() {
 //  FORM LOGIC
 // 
 let currentStep = 0;
-const TOTAL = 5;
+const TOTAL = 4;
 
 const TRACKED_FIELDS = [
   's1-fn','s1-ln','s1-gender','s1-age','s1-phone','s1-email','s1-nationality','s1-tshirt',
@@ -1668,7 +1649,7 @@ function goTo(step) {
     else           { dot.innerHTML = i+1; if (line) line.classList.remove('filled'); }
   }
   currentStep = step;
-  if (step === 4) buildSummary();
+  if (step === 3) buildSummary();
   document.getElementById(`step-${step}`).classList.add('active');
   document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
   sessionData.analytics.stepTimestamps.push({ step, time: Date.now() - formStartTime });
